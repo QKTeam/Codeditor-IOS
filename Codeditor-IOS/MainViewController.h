@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Codeditor.h"
+#import "Masonry.h"
 
 @interface MainViewController : UIViewController
+
+@property (nonatomic, strong) Codeditor* textView;
 
 @end

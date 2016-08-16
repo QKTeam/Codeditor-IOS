@@ -12,6 +12,12 @@
 		5FCAB35E1D62BF850039F8E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FCAB35D1D62BF850039F8E1 /* Assets.xcassets */; };
 		5FCAB3611D62BF850039F8E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FCAB35F1D62BF850039F8E1 /* LaunchScreen.storyboard */; };
 		5FCAB36A1D62C0290039F8E1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3691D62C0290039F8E1 /* MainViewController.m */; };
+		5FCAB3701D62D51C0039F8E1 /* Codeditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB36F1D62D51C0039F8E1 /* Codeditor.m */; };
+		5FCAB3731D62D6A20039F8E1 /* CodeditorColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3721D62D6A20039F8E1 /* CodeditorColorScheme.m */; };
+		5FCAB3791D62D9DC0039F8E1 /* CodeditorColorAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3781D62D9DC0039F8E1 /* CodeditorColorAttribute.m */; };
+		5FCAB37F1D62E3A90039F8E1 /* CodeditorLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB37E1D62E3A90039F8E1 /* CodeditorLanguage.m */; };
+		5FCAB3821D62E3C20039F8E1 /* CodeditorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */; };
+		5FCAB3851D62EB750039F8E1 /* CodeditorLanguagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */; };
 		F4B1ED89C97CA41C59E30774 /* libPods-Codeditor-IOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +32,18 @@
 		5FCAB3621D62BF850039F8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FCAB3681D62C0290039F8E1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		5FCAB3691D62C0290039F8E1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		5FCAB36E1D62D51C0039F8E1 /* Codeditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Codeditor.h; sourceTree = "<group>"; };
+		5FCAB36F1D62D51C0039F8E1 /* Codeditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Codeditor.m; sourceTree = "<group>"; };
+		5FCAB3711D62D6A20039F8E1 /* CodeditorColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorColorScheme.h; sourceTree = "<group>"; };
+		5FCAB3721D62D6A20039F8E1 /* CodeditorColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorColorScheme.m; sourceTree = "<group>"; };
+		5FCAB3771D62D9DC0039F8E1 /* CodeditorColorAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorColorAttribute.h; sourceTree = "<group>"; };
+		5FCAB3781D62D9DC0039F8E1 /* CodeditorColorAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorColorAttribute.m; sourceTree = "<group>"; };
+		5FCAB37D1D62E3A90039F8E1 /* CodeditorLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorLanguage.h; sourceTree = "<group>"; };
+		5FCAB37E1D62E3A90039F8E1 /* CodeditorLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorLanguage.m; sourceTree = "<group>"; };
+		5FCAB3801D62E3C20039F8E1 /* CodeditorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorPattern.h; sourceTree = "<group>"; };
+		5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorPattern.m; sourceTree = "<group>"; };
+		5FCAB3831D62EB750039F8E1 /* CodeditorLanguagePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorLanguagePattern.h; sourceTree = "<group>"; };
+		5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorLanguagePattern.m; sourceTree = "<group>"; };
 		855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Codeditor-IOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeditor-IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,6 +72,7 @@
 		5FCAB3451D62BF850039F8E1 = {
 			isa = PBXGroup;
 			children = (
+				5FCAB36D1D62D0230039F8E1 /* Codeditor */,
 				5FCAB3501D62BF850039F8E1 /* Codeditor-IOS */,
 				5FCAB34F1D62BF850039F8E1 /* Products */,
 				37AAD0489B6EE4326876FC39 /* Pods */,
@@ -90,6 +109,25 @@
 				5FCAB3521D62BF850039F8E1 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5FCAB36D1D62D0230039F8E1 /* Codeditor */ = {
+			isa = PBXGroup;
+			children = (
+				5FCAB36E1D62D51C0039F8E1 /* Codeditor.h */,
+				5FCAB36F1D62D51C0039F8E1 /* Codeditor.m */,
+				5FCAB3711D62D6A20039F8E1 /* CodeditorColorScheme.h */,
+				5FCAB3721D62D6A20039F8E1 /* CodeditorColorScheme.m */,
+				5FCAB3771D62D9DC0039F8E1 /* CodeditorColorAttribute.h */,
+				5FCAB3781D62D9DC0039F8E1 /* CodeditorColorAttribute.m */,
+				5FCAB37D1D62E3A90039F8E1 /* CodeditorLanguage.h */,
+				5FCAB37E1D62E3A90039F8E1 /* CodeditorLanguage.m */,
+				5FCAB3801D62E3C20039F8E1 /* CodeditorPattern.h */,
+				5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */,
+				5FCAB3831D62EB750039F8E1 /* CodeditorLanguagePattern.h */,
+				5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */,
+			);
+			path = Codeditor;
 			sourceTree = "<group>";
 		};
 		A6A3FD1AFE7EBF2E28B4156C /* Frameworks */ = {
@@ -222,7 +260,13 @@
 			files = (
 				5FCAB3561D62BF850039F8E1 /* AppDelegate.m in Sources */,
 				5FCAB36A1D62C0290039F8E1 /* MainViewController.m in Sources */,
+				5FCAB3791D62D9DC0039F8E1 /* CodeditorColorAttribute.m in Sources */,
+				5FCAB3851D62EB750039F8E1 /* CodeditorLanguagePattern.m in Sources */,
 				5FCAB3531D62BF850039F8E1 /* main.m in Sources */,
+				5FCAB3701D62D51C0039F8E1 /* Codeditor.m in Sources */,
+				5FCAB3821D62E3C20039F8E1 /* CodeditorPattern.m in Sources */,
+				5FCAB3731D62D6A20039F8E1 /* CodeditorColorScheme.m in Sources */,
+				5FCAB37F1D62E3A90039F8E1 /* CodeditorLanguage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
