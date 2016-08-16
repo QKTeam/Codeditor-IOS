@@ -12,6 +12,8 @@
 
 - (instancetype)init {
     if(self = [super init]) {
+        self.topPadding = self.rightPadding = self.bottomPadding = 5;
+        self.leftPadding = 30;
         self.languagePattern = [CodeditorLanguagePattern initWithLanguage:CodeditorLanguagePlain];
         self.colorScheme = [CodeditorColorScheme colorSchemeWithColorSchemeType:CodeditorColorSchemeDefault];
         [self setBackgroundColor:self.colorScheme.backgroundColor];
@@ -37,6 +39,7 @@
     return self;
 }
 
+#pragma mark Attributes
 - (void)setAttributes:(CodeditorColorAttribute*)attributes andPattern:(NSArray<CodeditorPattern*>*)patterns To:(NSMutableAttributedString**)strPoint {
     NSMutableAttributedString* str = *strPoint;
     for (CodeditorPattern* pattern in patterns) {
@@ -49,7 +52,6 @@
     }
     *strPoint = str;
 }
-
 - (void)reloadData {
     NSRange selectedRange = self.selectedRange;
     NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:self.text];
@@ -61,13 +63,26 @@
     [self setAttributes:self.colorScheme.character andPattern:self.languagePattern.character To:&text];
     [self setAttributes:self.colorScheme.string andPattern:self.languagePattern.string To:&text];
     [self setAttributes:self.colorScheme.comment andPattern:self.languagePattern.comment To:&text];
-    [self setAttributedText:[text attributedSubstringFromRange:NSMakeRange(0, text.length)]];
+    [self setAttributedText:text];
     [self setSelectedRange:selectedRange];
+//    [self calculateLineNumbers];
+}
+- (void)calculateLineNumbers {
+    [self setTextContainerInset:UIEdgeInsetsMake(self.topPadding, self.leftPadding, self.bottomPadding, self.rightPadding)];
+    UIView* a = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [a setBackgroundColor:[UIColor redColor]];
+    [self.inputView addSubview:a];
 }
 
+# pragma mark UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
 //    NSLog(@"will reloadData");
     [self reloadData];
 }
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//    NSLog(@"(%ld, %ld) = %@", range.location, range.length, text);
+//    return YES;
+//}
 
+# pragma mark NSLayoutManagerDelegate
 @end
