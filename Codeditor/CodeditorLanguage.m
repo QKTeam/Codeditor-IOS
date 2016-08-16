@@ -12,10 +12,14 @@
 
 + (NSArray<NSString*>*)suffixesOfLanguageType:(CodeditorLanguageType)type {
     switch (type) {
+        case CodeditorLanguageC:
+            return @[@"c"];
         case CodeditorLanguageCpp:
             return @[@"cpp", @"cxx", @"cc"];
         case CodeditorLanguagePascal:
             return @[@"pas"];
+        case CodeditorLanguageJava:
+            return @[@"java"];
         default:
             return @[];
     }
@@ -32,14 +36,10 @@
 
 + (CodeditorLanguageType)getLanguageByFileSuffixName:(NSString*)suffix {
     suffix = [suffix lowercaseString];
-    if([self isSuffix:suffix equalToType:CodeditorLanguageCpp]) {
-        return CodeditorLanguageCpp;
-    }
-    if([self isSuffix:suffix equalToType:CodeditorLanguagePascal]) {
-        return CodeditorLanguagePascal;
-    }
-    if([self isSuffix:suffix equalToType:CodeditorLanguageJava]) {
-        return CodeditorLanguageJava;
+    for(CodeditorLanguageType type = 0; type < CodeditorLanguagePlain; type++) {
+        if([self isSuffix:suffix equalToType:type]) {
+            return type;
+        }
     }
     return CodeditorLanguagePlain;
 }

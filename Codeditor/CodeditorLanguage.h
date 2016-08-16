@@ -11,10 +11,11 @@
 @interface CodeditorLanguage : NSObject
 
 typedef enum {
-    CodeditorLanguagePlain = 0,
+    CodeditorLanguageC = 0,
     CodeditorLanguageCpp,
     CodeditorLanguagePascal,
     CodeditorLanguageJava,
+    CodeditorLanguagePlain
 } CodeditorLanguageType;
 
 @end
