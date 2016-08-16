@@ -59,6 +59,12 @@
 
 + (instancetype)initWithLanguage:(CodeditorLanguageType)type {
     switch (type) {
+        case CodeditorLanguageC:
+            return [self initWithLanguage:CodeditorLanguagePascal
+                                  comment:@[]
+                                  grammar:@[]
+                                  keyword:@[]];
+            
         case CodeditorLanguageCpp:
             return [self initWithLanguage:CodeditorLanguageCpp
                                   comment:@[
