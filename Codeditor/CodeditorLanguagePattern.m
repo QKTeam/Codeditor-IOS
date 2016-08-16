@@ -29,7 +29,7 @@
         self.grammar = grammar;
         self.keyword = keyword;
         self.symbol = @[
-                           [[CodeditorPattern alloc] initWithPattern:@"[^a-zA-Z0-9_\\[\\]\\(\\)\\{\\}]" leftOffset:0 rightOffset:0]
+                           [[CodeditorPattern alloc] initWithPattern:@"[^a-zA-Z0-9_\\[\\]\\(\\)\\{\\},.;]" leftOffset:0 rightOffset:0]
                            ];
     }
     return self;
