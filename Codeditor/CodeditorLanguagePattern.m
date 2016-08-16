@@ -29,7 +29,7 @@
         self.grammar = grammar;
         self.keyword = keyword;
         self.symbol = @[
-                           [[CodeditorPattern alloc] initWithPattern:@"[^a-zA-Z0-9_\\[\\]]" leftOffset:0 rightOffset:0]
+                           [[CodeditorPattern alloc] initWithPattern:@"[^a-zA-Z0-9_\\[\\]\\(\\)\\{\\}]" leftOffset:0 rightOffset:0]
                            ];
     }
     return self;
@@ -66,10 +66,10 @@
                                             [[CodeditorPattern alloc] initWithPattern:@"/\\*(.*)\\*/" leftOffset:0 rightOffset:0]
                                             ]
                                   grammar:@[
-                                            [[CodeditorPattern alloc] initWithPattern:@"\\b(if|for)\\b" leftOffset:0 rightOffset:0]
+                                            [[CodeditorPattern alloc] initWithPattern:@"\\b(void|bool|char|float|int|double|short|long|unsigned|signed|struct|union|enum|typedef|sizeof|auto|static|register|extern|const|volatile|return|continue|break|goto|if|else|switch|case|default|for|do|while|include)\\b" leftOffset:0 rightOffset:0]
                                             ]
                                   keyword:@[
-                                            [[CodeditorPattern alloc] initWithPattern:@"\\b(void|bool|char|float|int|double|short|long|unsigned|signed|struct|union|enum|typedef|sizeof|auto|static|register|extern|const|volatile|return|continue|break|goto|if|else|switch|case|default|for|do|while|include)\\b" leftOffset:0 rightOffset:0]
+                                            [[CodeditorPattern alloc] initWithPattern:@"\\b(.*?)\\(" leftOffset:0 rightOffset:1]
                                             ]
                     ];
             

@@ -52,7 +52,7 @@
 
 - (void)reloadData {
     NSRange selectedRange = self.selectedRange;
-    NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ ", self.text]];
+    NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:self.text];
     [self setAttributes:self.colorScheme.normal andPattern:self.languagePattern.normal To:&text];
     [self setAttributes:self.colorScheme.grammar andPattern:self.languagePattern.grammar To:&text];
     [self setAttributes:self.colorScheme.keyword andPattern:self.languagePattern.keyword To:&text];
@@ -61,7 +61,7 @@
     [self setAttributes:self.colorScheme.character andPattern:self.languagePattern.character To:&text];
     [self setAttributes:self.colorScheme.string andPattern:self.languagePattern.string To:&text];
     [self setAttributes:self.colorScheme.comment andPattern:self.languagePattern.comment To:&text];
-    [self setAttributedText:[text attributedSubstringFromRange:NSMakeRange(1, text.length-2)]];
+    [self setAttributedText:[text attributedSubstringFromRange:NSMakeRange(0, text.length)]];
     [self setSelectedRange:selectedRange];
 }
 

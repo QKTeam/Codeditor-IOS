@@ -45,7 +45,7 @@
                                                  character:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]
                                                     string:[CodeditorColorAttribute initWithColor:[UIColor redColor]]
                                                    grammar:[CodeditorColorAttribute initWithColor:[UIColor purpleColor]]
-                                                   keyword:[CodeditorColorAttribute initWithColor:[UIColor purpleColor]]
+                                                   keyword:[CodeditorColorAttribute initWithColor:[UIColor orangeColor]]
                                                     symbol:[CodeditorColorAttribute initWithColor:[UIColor purpleColor]]
               ]
              ];
