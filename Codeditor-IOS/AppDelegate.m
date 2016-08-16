@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  Codeditor-IOS
 //
-//  Created by Sunnycool on 16/8/16.
+//  Created by GuessEver on 16/8/16.
 //  Copyright © 2016年 QKTeam. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[MainViewController alloc] init];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

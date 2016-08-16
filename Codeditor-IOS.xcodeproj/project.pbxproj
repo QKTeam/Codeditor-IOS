@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		5FCAB3531D62BF850039F8E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3521D62BF850039F8E1 /* main.m */; };
 		5FCAB3561D62BF850039F8E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3551D62BF850039F8E1 /* AppDelegate.m */; };
-		5FCAB3591D62BF850039F8E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3581D62BF850039F8E1 /* ViewController.m */; };
-		5FCAB35C1D62BF850039F8E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FCAB35A1D62BF850039F8E1 /* Main.storyboard */; };
 		5FCAB35E1D62BF850039F8E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FCAB35D1D62BF850039F8E1 /* Assets.xcassets */; };
 		5FCAB3611D62BF850039F8E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FCAB35F1D62BF850039F8E1 /* LaunchScreen.storyboard */; };
+		5FCAB36A1D62C0290039F8E1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3691D62C0290039F8E1 /* MainViewController.m */; };
+		F4B1ED89C97CA41C59E30774 /* libPods-Codeditor-IOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52B5A266E8AF328EBAD58FE9 /* Pods-Codeditor-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeditor-IOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS.release.xcconfig"; sourceTree = "<group>"; };
 		5FCAB34E1D62BF850039F8E1 /* Codeditor-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Codeditor-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FCAB3521D62BF850039F8E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5FCAB3541D62BF850039F8E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5FCAB3551D62BF850039F8E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5FCAB3571D62BF850039F8E1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5FCAB3581D62BF850039F8E1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		5FCAB35B1D62BF850039F8E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5FCAB35D1D62BF850039F8E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FCAB3601D62BF850039F8E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5FCAB3621D62BF850039F8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FCAB3681D62C0290039F8E1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		5FCAB3691D62C0290039F8E1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Codeditor-IOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeditor-IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4B1ED89C97CA41C59E30774 /* libPods-Codeditor-IOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37AAD0489B6EE4326876FC39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */,
+				52B5A266E8AF328EBAD58FE9 /* Pods-Codeditor-IOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5FCAB3451D62BF850039F8E1 = {
 			isa = PBXGroup;
 			children = (
 				5FCAB3501D62BF850039F8E1 /* Codeditor-IOS */,
 				5FCAB34F1D62BF850039F8E1 /* Products */,
+				37AAD0489B6EE4326876FC39 /* Pods */,
+				A6A3FD1AFE7EBF2E28B4156C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,13 +74,12 @@
 			children = (
 				5FCAB3541D62BF850039F8E1 /* AppDelegate.h */,
 				5FCAB3551D62BF850039F8E1 /* AppDelegate.m */,
-				5FCAB3571D62BF850039F8E1 /* ViewController.h */,
-				5FCAB3581D62BF850039F8E1 /* ViewController.m */,
-				5FCAB35A1D62BF850039F8E1 /* Main.storyboard */,
 				5FCAB35D1D62BF850039F8E1 /* Assets.xcassets */,
 				5FCAB35F1D62BF850039F8E1 /* LaunchScreen.storyboard */,
 				5FCAB3621D62BF850039F8E1 /* Info.plist */,
 				5FCAB3511D62BF850039F8E1 /* Supporting Files */,
+				5FCAB3681D62C0290039F8E1 /* MainViewController.h */,
+				5FCAB3691D62C0290039F8E1 /* MainViewController.m */,
 			);
 			path = "Codeditor-IOS";
 			sourceTree = "<group>";
@@ -79,6 +92,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A6A3FD1AFE7EBF2E28B4156C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FCAB3651D62BF850039F8E1 /* Build configuration list for PBXNativeTarget "Codeditor-IOS" */;
 			buildPhases = (
+				7DA7F4C16C4470219C3FDD8F /* [CP] Check Pods Manifest.lock */,
 				5FCAB34A1D62BF850039F8E1 /* Sources */,
 				5FCAB34B1D62BF850039F8E1 /* Frameworks */,
 				5FCAB34C1D62BF850039F8E1 /* Resources */,
+				4C79CD984EA2C6ED793B2EE7 /* [CP] Embed Pods Frameworks */,
+				CD8069B3B9BCE30E29A3F92C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,19 +162,66 @@
 			files = (
 				5FCAB3611D62BF850039F8E1 /* LaunchScreen.storyboard in Resources */,
 				5FCAB35E1D62BF850039F8E1 /* Assets.xcassets in Resources */,
-				5FCAB35C1D62BF850039F8E1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C79CD984EA2C6ED793B2EE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DA7F4C16C4470219C3FDD8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CD8069B3B9BCE30E29A3F92C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5FCAB34A1D62BF850039F8E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FCAB3591D62BF850039F8E1 /* ViewController.m in Sources */,
 				5FCAB3561D62BF850039F8E1 /* AppDelegate.m in Sources */,
+				5FCAB36A1D62C0290039F8E1 /* MainViewController.m in Sources */,
 				5FCAB3531D62BF850039F8E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,14 +229,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5FCAB35A1D62BF850039F8E1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5FCAB35B1D62BF850039F8E1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5FCAB35F1D62BF850039F8E1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -263,22 +326,26 @@
 		};
 		5FCAB3661D62BF850039F8E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Codeditor-IOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.Codeditor-IOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.codeditor-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		5FCAB3671D62BF850039F8E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52B5A266E8AF328EBAD58FE9 /* Pods-Codeditor-IOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Codeditor-IOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.Codeditor-IOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.codeditor-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -302,6 +369,7 @@
 				5FCAB3671D62BF850039F8E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

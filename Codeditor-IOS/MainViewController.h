@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  Codeditor-IOS
 //
-//  Created by Sunnycool on 16/8/16.
+//  Created by GuessEver on 16/8/16.
 //  Copyright © 2016年 QKTeam. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MainViewController : UIViewController
 
 @end
-
