@@ -145,12 +145,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FCAB3651D62BF850039F8E1 /* Build configuration list for PBXNativeTarget "Codeditor-IOS" */;
 			buildPhases = (
+				C0708DC4042643904D727139 /* 📦 Check Pods Manifest.lock */,
 				7DA7F4C16C4470219C3FDD8F /* [CP] Check Pods Manifest.lock */,
 				5FCAB34A1D62BF850039F8E1 /* Sources */,
 				5FCAB34B1D62BF850039F8E1 /* Frameworks */,
 				5FCAB34C1D62BF850039F8E1 /* Resources */,
 				4C79CD984EA2C6ED793B2EE7 /* [CP] Embed Pods Frameworks */,
 				CD8069B3B9BCE30E29A3F92C /* [CP] Copy Pods Resources */,
+				F5A15B6C2D1D3DA39BA94216 /* 📦 Embed Pods Frameworks */,
+				F243AD30140D08D0FE7FE805 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,6 +175,7 @@
 				TargetAttributes = {
 					5FCAB34D1D62BF850039F8E1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9MKLJRJTT4;
 					};
 				};
 			};
@@ -236,6 +240,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		C0708DC4042643904D727139 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		CD8069B3B9BCE30E29A3F92C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,6 +268,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F243AD30140D08D0FE7FE805 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5A15B6C2D1D3DA39BA94216 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -373,11 +422,14 @@
 			baseConfigurationReference = 8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Codeditor-IOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.codeditor-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -386,11 +438,14 @@
 			baseConfigurationReference = 52B5A266E8AF328EBAD58FE9 /* Pods-Codeditor-IOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Codeditor-IOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.codeditor-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
