@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* character;
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* string;
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* grammar; // system
-@property (nonatomic, strong) NSArray<CodeditorPattern*>* keyword; // something like functio name
+@property (nonatomic, strong) NSArray<CodeditorPattern*>* keyword; // something like function name
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* symbol;
 
 
