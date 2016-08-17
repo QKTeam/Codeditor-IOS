@@ -11,16 +11,16 @@
 @implementation CodeditorLanguagePattern
 
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type
+                          normal:(NSArray<CodeditorPattern*>*)normal
                          comment:(NSArray<CodeditorPattern*>*)comment
                           number:(NSArray<CodeditorPattern*>*)number
                        character:(NSArray<CodeditorPattern*>*)character
                           string:(NSArray<CodeditorPattern*>*)string
                          grammar:(NSArray<CodeditorPattern*>*)grammar
-                         keyword:(NSArray<CodeditorPattern*>*)keyword {
+                         keyword:(NSArray<CodeditorPattern*>*)keyword
+                          symbol:(NSArray<CodeditorPattern*>*)symbol {
     if(self = [super init]) {
-        self.normal = @[
-                        [CodeditorPattern initWithPattern:@"(.|\n)*" globalMatch:YES]
-                        ];
+        self.normal = normal;
         self.language = type;
         self.comment = comment;
         self.number = number;
@@ -28,30 +28,73 @@
         self.string = string;
         self.grammar = grammar;
         self.keyword = keyword;
-        self.symbol = @[
-                        [CodeditorPattern initWithPattern:@"[^a-zA-Z0-9_\\[\\]\\(\\)\\{\\},.;]"]
-                        ];
+        self.symbol = symbol;
     }
     return self;
 }
 
 + (instancetype)initWithLanguage:(CodeditorLanguageType)type
                          comment:(NSArray<CodeditorPattern*>*)comment
+                          number:(NSArray<CodeditorPattern*>*)number
+                       character:(NSArray<CodeditorPattern*>*)character
+                          string:(NSArray<CodeditorPattern*>*)string
                          grammar:(NSArray<CodeditorPattern*>*)grammar
                          keyword:(NSArray<CodeditorPattern*>*)keyword {
     return [[[self class] alloc] initWithLanguage:type
+                                           normal:@[
+                                                    [CodeditorPattern initWithPattern:@"(.|\n)*" globalMatch:YES]
+                                                    ]
                                           comment:comment
-                                           number:@[
-                                                    [CodeditorPattern initWithPattern:@"\\b[0-9]+\\b"]
-                                                    ]
-                                        character:@[
-                                                    [CodeditorPattern initWithPattern:@"'(.*?)'"]
-                                                    ]
-                                           string:@[
-                                                    [CodeditorPattern initWithPattern:@"\"(.*?)\""]
-                                                    ]
+                                           number:number
+                                        character:character
+                                           string:string
                                           grammar:grammar
                                           keyword:keyword
+                                           symbol:@[
+                                                    [CodeditorPattern initWithPattern:@"[^a-zA-Z0-9_\\[\\]\\(\\)\\{\\},.;]"]
+                                                    ]
+            ];
+}
+
++ (instancetype)initWithLanguage:(CodeditorLanguageType)type
+                         comment:(NSArray<CodeditorPattern*>*)comment
+                          number:(NSArray<CodeditorPattern*>*)number
+                       character:(NSArray<CodeditorPattern*>*)character
+                          string:(NSArray<CodeditorPattern*>*)string
+                         grammar:(NSArray<CodeditorPattern*>*)grammar
+                         keyword:(NSArray<CodeditorPattern*>*)keyword
+                          symbol:(NSArray<CodeditorPattern*>*)symbol {
+    return [[[self class] alloc] initWithLanguage:type
+                                           normal:@[
+                                                    [CodeditorPattern initWithPattern:@"(.|\n)*" globalMatch:YES]
+                                                    ]
+                                          comment:comment
+                                           number:number
+                                        character:character
+                                           string:string
+                                          grammar:grammar
+                                          keyword:keyword
+                                           symbol:symbol
+            ];
+}
+
++ (instancetype)initWithLanguage:(CodeditorLanguageType)type
+                         comment:(NSArray<CodeditorPattern*>*)comment
+                         grammar:(NSArray<CodeditorPattern*>*)grammar
+                         keyword:(NSArray<CodeditorPattern*>*)keyword {
+    return [self initWithLanguage:type
+                          comment:comment
+                           number:@[
+                                    [CodeditorPattern initWithPattern:@"\\b[0-9]+\\b"]
+                                    ]
+                        character:@[
+                                    [CodeditorPattern initWithPattern:@"'(.*?)'"]
+                                    ]
+                           string:@[
+                                    [CodeditorPattern initWithPattern:@"\"(.*?)\""]
+                                    ]
+                          grammar:grammar
+                          keyword:keyword
             ];
 }
 
@@ -71,6 +114,7 @@
                                             [CodeditorPattern initWithPattern:@"\\b([a-zA-Z0-9_]+?)\\(" rightOffset:1]
                                             ]
                     ];
+            
         case CodeditorLanguageCpp:
             return [self initWithLanguage:CodeditorLanguageCpp
                                   comment:@[
@@ -119,8 +163,12 @@
         default:
             return [self initWithLanguage:CodeditorLanguagePlain
                                   comment:@[]
+                                   number:@[]
+                                character:@[]
+                                   string:@[]
                                   grammar:@[]
                                   keyword:@[]
+                                   symbol:@[]
                     ];
     }
 }

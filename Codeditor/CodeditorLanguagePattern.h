@@ -22,8 +22,6 @@
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* keyword; // something like function name or language used variables
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* symbol;
 
-
-
 + (instancetype)initWithLanguage:(CodeditorLanguageType)type;
 
 @end
