@@ -15,7 +15,6 @@
 @property NSRange editedRange;
 @property (nonatomic, strong) CodeditorColorScheme* colorScheme;
 @property (nonatomic, strong) CodeditorLanguagePattern* languagePattern;
-@property CGFloat topPadding, rightPadding, bottomPadding, leftPadding;
 
 
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type andColorScheme:(CodeditorColorSchemeType)colorScheme;

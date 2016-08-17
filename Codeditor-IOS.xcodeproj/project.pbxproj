@@ -18,6 +18,7 @@
 		5FCAB37F1D62E3A90039F8E1 /* CodeditorLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB37E1D62E3A90039F8E1 /* CodeditorLanguage.m */; };
 		5FCAB3821D62E3C20039F8E1 /* CodeditorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */; };
 		5FCAB3851D62EB750039F8E1 /* CodeditorLanguagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */; };
+		5FCAB38B1D640C130039F8E1 /* CodeditorLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB38A1D640C130039F8E1 /* CodeditorLayoutManager.m */; };
 		F4B1ED89C97CA41C59E30774 /* libPods-Codeditor-IOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,8 @@
 		5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorPattern.m; sourceTree = "<group>"; };
 		5FCAB3831D62EB750039F8E1 /* CodeditorLanguagePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorLanguagePattern.h; sourceTree = "<group>"; };
 		5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorLanguagePattern.m; sourceTree = "<group>"; };
+		5FCAB3891D640C130039F8E1 /* CodeditorLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorLayoutManager.h; sourceTree = "<group>"; };
+		5FCAB38A1D640C130039F8E1 /* CodeditorLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorLayoutManager.m; sourceTree = "<group>"; };
 		855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Codeditor-IOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeditor-IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +129,8 @@
 				5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */,
 				5FCAB3831D62EB750039F8E1 /* CodeditorLanguagePattern.h */,
 				5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */,
+				5FCAB3891D640C130039F8E1 /* CodeditorLayoutManager.h */,
+				5FCAB38A1D640C130039F8E1 /* CodeditorLayoutManager.m */,
 			);
 			path = Codeditor;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				5FCAB3561D62BF850039F8E1 /* AppDelegate.m in Sources */,
 				5FCAB36A1D62C0290039F8E1 /* MainViewController.m in Sources */,
 				5FCAB3791D62D9DC0039F8E1 /* CodeditorColorAttribute.m in Sources */,
+				5FCAB38B1D640C130039F8E1 /* CodeditorLayoutManager.m in Sources */,
 				5FCAB3851D62EB750039F8E1 /* CodeditorLanguagePattern.m in Sources */,
 				5FCAB3531D62BF850039F8E1 /* main.m in Sources */,
 				5FCAB3701D62D51C0039F8E1 /* Codeditor.m in Sources */,
@@ -427,7 +433,7 @@
 				INFOPLIST_FILE = "Codeditor-IOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.codeditor-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qkteam.codeditor.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -443,7 +449,7 @@
 				INFOPLIST_FILE = "Codeditor-IOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.qkteam.codeditor-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qkteam.codeditor.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -7,15 +7,25 @@
 //
 
 #import "Codeditor.h"
+#import "CodeditorLayoutManager.h"
 
 @implementation Codeditor
 
 - (instancetype)initWithLanguage:(CodeditorLanguageType)languageType andColorScheme:(CodeditorColorSchemeType)colorScheme {
-    if(self = [super init]) {
-        self.topPadding = self.rightPadding = self.bottomPadding = 5;
-        self.leftPadding = 30;
-        self.languagePattern = [CodeditorLanguagePattern initWithLanguage:languageType];
-        self.colorScheme = [CodeditorColorScheme colorSchemeWithColorSchemeType:colorScheme];
+    self.languagePattern = [CodeditorLanguagePattern initWithLanguage:languageType];
+    self.colorScheme = [CodeditorColorScheme colorSchemeWithColorSchemeType:colorScheme];
+    
+    NSTextStorage* textStorage = [[NSTextStorage alloc] init];
+    CodeditorLayoutManager* layoutManager = [[CodeditorLayoutManager alloc] initWithLineNumberColor:self.colorScheme.lineNumberColor];
+    NSTextContainer* textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+    [textContainer setWidthTracksTextView:YES];
+    [textContainer setExclusionPaths:@[[UIBezierPath bezierPathWithRect:CGRectMake(0.0, 0.0, CodeditorLineNumberColumnWidth, CGFLOAT_MAX)]]];
+    [layoutManager addTextContainer:textContainer];
+    
+    [textStorage removeLayoutManager:textStorage.layoutManagers.firstObject];
+    [textStorage addLayoutManager:layoutManager];
+    // code above for line numbers
+    if(self = [super initWithFrame:CGRectZero textContainer:textContainer]) {
         [self setBackgroundColor:self.colorScheme.backgroundColor];
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
         [self setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -63,10 +73,6 @@
     [self setAttributes:self.colorScheme.string andPattern:self.languagePattern.string inRange:range];
     [self setAttributes:self.colorScheme.comment andPattern:self.languagePattern.comment inRange:range];
 //    [self setSelectedRange:selectedRange];
-//    [self calculateLineNumbers];
-}
-- (void)calculateLineNumbers {
-    [self setTextContainerInset:UIEdgeInsetsMake(self.topPadding, self.leftPadding, self.bottomPadding, self.rightPadding)];
 }
 
 # pragma mark UITextViewDelegate
@@ -82,6 +88,5 @@
     self.editedRange = NSMakeRange(range.location, text.length);
     return YES;
 }
-
 
 @end

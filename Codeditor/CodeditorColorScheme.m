@@ -12,6 +12,7 @@
 
 - (instancetype)initWithColorSchemeName:(NSString*)name
                              Background:(UIColor*)backgroundColor
+                        lineNumberColor:(UIColor*)lineNumberColor
                      andAttributeNormal:(CodeditorColorAttribute*)normal
                                 comment:(CodeditorColorAttribute*)comment
                                  number:(CodeditorColorAttribute*)number
@@ -23,6 +24,7 @@
     if(self = [super init]) {
         self.name = name;
         self.backgroundColor = backgroundColor;
+        self.lineNumberColor = lineNumberColor;
         self.normal = normal;
         self.comment = comment;
         self.number = number;
@@ -39,8 +41,9 @@
     return @[
              [[[self class] alloc] initWithColorSchemeName:@"Default"
                                                 Background:[UIColor whiteColor]
+                                           lineNumberColor:[UIColor grayColor]
                                         andAttributeNormal:[CodeditorColorAttribute initWithColor:[UIColor blackColor]]
-                                                   comment:[CodeditorColorAttribute initWithColor:[UIColor greenColor]]
+                                                   comment:[CodeditorColorAttribute initWithColor:[UIColor greenColor] italic:YES]
                                                     number:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]
                                                  character:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]
                                                     string:[CodeditorColorAttribute initWithColor:[UIColor redColor]]

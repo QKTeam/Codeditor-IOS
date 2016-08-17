@@ -23,6 +23,8 @@
                        italic:(BOOL)italic;
 + (instancetype)initWithColor:(UIColor*)color
                          bold:(BOOL)bold;
++ (instancetype)initWithColor:(UIColor*)color
+                       italic:(BOOL)italic;
 + (instancetype)initWithColor:(UIColor*)color;
 
 @end
