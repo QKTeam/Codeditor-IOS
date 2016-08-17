@@ -43,7 +43,7 @@
                                                 Background:[UIColor whiteColor]
                                            lineNumberColor:[UIColor grayColor]
                                         andAttributeNormal:[CodeditorColorAttribute initWithColor:[UIColor blackColor]]
-                                                   comment:[CodeditorColorAttribute initWithColor:[UIColor greenColor] italic:YES]
+                                                   comment:[CodeditorColorAttribute initWithColor:[UIColor greenColor]]
                                                     number:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]
                                                  character:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]
                                                     string:[CodeditorColorAttribute initWithColor:[UIColor redColor]]

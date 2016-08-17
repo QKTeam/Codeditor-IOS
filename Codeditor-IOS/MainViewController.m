@@ -22,7 +22,7 @@
             make.bottom.equalTo(self.view.mas_bottom);
             make.left.equalTo(self.view.mas_left);
         }];
-        [self.textView setText:@"#include <cstdio>\nint main() {\n\tprintf(\"hello world!\");\n\treturn 0;\n}\n"];
+        [self.textView setText:@"#include <cstdio>\nint main() {\n\tprintf(\"hello world!\");\n\treturn 0;\n}"];
         [self.textView reloadData];
     }
     return self;

@@ -12,10 +12,10 @@
 
 @property (nonatomic, strong) NSDictionary* attributesDictionary;
 @property (nonatomic, strong) UIColor* color;
-@property BOOL bold;
-@property CGFloat size;
-@property BOOL underline;
-@property BOOL italic;
+@property (nonatomic) BOOL bold;
+@property (nonatomic) CGFloat size;
+@property (nonatomic) BOOL underline;
+@property (nonatomic) BOOL italic;
 
 
 + (instancetype)initWithColor:(UIColor*)color

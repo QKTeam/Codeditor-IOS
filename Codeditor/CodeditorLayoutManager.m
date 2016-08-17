@@ -91,7 +91,7 @@
 - (void)drawBackgroundForGlyphRange:(NSRange)glyphsToShow atPoint:(CGPoint)origin {
     [super drawBackgroundForGlyphRange:glyphsToShow atPoint:origin];
     
-    NSLog(@"(%ld, %ld) = %@", glyphsToShow.location, glyphsToShow.length, [self.textStorage.string substringWithRange:glyphsToShow]);
+//    NSLog(@"(%ld, %ld) = %@", glyphsToShow.location, glyphsToShow.length, [self.textStorage.string substringWithRange:glyphsToShow]);
     
     //  Draw line numbers.  Note that the background for line number gutter is drawn by the LineNumberTextView class.
     NSDictionary* atts = @{NSFontAttributeName : [UIFont systemFontOfSize:10.0],

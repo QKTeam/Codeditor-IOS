@@ -50,7 +50,9 @@
 - (void)setAttributes:(CodeditorColorAttribute*)attributes andPattern:(NSArray<CodeditorPattern*>*)patterns inRange:(NSRange)range {
     for (CodeditorPattern* pattern in patterns) {
         // NSRegularExpressionAnchorsMatchLines: match it with every single line
-        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern.pattern options:NSRegularExpressionAnchorsMatchLines error:nil];
+        NSRegularExpressionOptions option = NSRegularExpressionDotMatchesLineSeparators;//NSRegularExpressionAnchorsMatchLines;
+//        if(pattern.globalMatch) option = NSRegularExpressionDotMatchesLineSeparators;
+        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern.pattern options:option error:nil];
         [regex enumerateMatchesInString:self.textStorage.string options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
 //            NSLog(@"(%ld, %ld) = %@ -- %@", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range], attributes.attributesDictionary);
             [self.textStorage setAttributes:attributes.attributesDictionary range:NSMakeRange(result.range.location + pattern.leftOffset, result.range.length - pattern.leftOffset - pattern.rightOffset)];
@@ -79,9 +81,11 @@
 - (void)textViewDidChange:(UITextView *)textView {
     // NSLog(@"will reloadData")
 //    NSLog(@"editedRange (%ld, %ld)", self.editedRange.location, self.editedRange.length);
-    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
+//    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
 //    NSLog(@"\n(%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.text substringWithRange:paragaphRange]);
-    [self reloadDataInRange:paragaphRange];
+//    [self reloadDataInRange:paragaphRange];
+    // cannot use reloadDataInRange, it may make comment block (/* ..(with '\n') */) error
+    [self reloadData];
 }
 // get the edited range, just rerender the changed part, making it faster
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
