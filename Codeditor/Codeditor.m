@@ -40,49 +40,48 @@
 }
 
 #pragma mark Attributes
-- (void)setAttributes:(CodeditorColorAttribute*)attributes andPattern:(NSArray<CodeditorPattern*>*)patterns To:(NSMutableAttributedString**)strPoint {
-    NSMutableAttributedString* str = *strPoint;
+- (void)setAttributes:(CodeditorColorAttribute*)attributes andPattern:(NSArray<CodeditorPattern*>*)patterns inRange:(NSRange)range {
     for (CodeditorPattern* pattern in patterns) {
-        NSRegularExpression* regrex = [NSRegularExpression regularExpressionWithPattern:pattern.pattern options:NSRegularExpressionAnchorsMatchLines error:nil];
-        NSArray<NSTextCheckingResult*>* results = [regrex matchesInString:str.string options:0 range:NSMakeRange(0, str.string.length)];
-        for (NSTextCheckingResult* result in results) {
-//            NSLog(@"(%ld, %ld) = %@ -- %@", result.range.location, result.range.length, [str.string substringWithRange:result.range], attributes.attributesDictionary);
-            [str setAttributes:attributes.attributesDictionary range:NSMakeRange(result.range.location + pattern.leftOffset, result.range.length - pattern.leftOffset - pattern.rightOffset)];
-        }
+        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern.pattern options:NSRegularExpressionAnchorsMatchLines error:nil];
+        [regex enumerateMatchesInString:self.textStorage.string options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+//            NSLog(@"(%ld, %ld) = %@ -- %@", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range], attributes.attributesDictionary);
+            [self.textStorage setAttributes:attributes.attributesDictionary range:NSMakeRange(result.range.location + pattern.leftOffset, result.range.length - pattern.leftOffset - pattern.rightOffset)];
+        }];
     }
-    *strPoint = str;
 }
+
 - (void)reloadData {
-    NSRange selectedRange = self.selectedRange;
-    NSMutableAttributedString* text = [[NSMutableAttributedString alloc] initWithString:self.text];
-    [self setAttributes:self.colorScheme.normal andPattern:self.languagePattern.normal To:&text];
-    [self setAttributes:self.colorScheme.grammar andPattern:self.languagePattern.grammar To:&text];
-    [self setAttributes:self.colorScheme.keyword andPattern:self.languagePattern.keyword To:&text];
-    [self setAttributes:self.colorScheme.symbol andPattern:self.languagePattern.symbol To:&text];
-    [self setAttributes:self.colorScheme.number andPattern:self.languagePattern.number To:&text];
-    [self setAttributes:self.colorScheme.character andPattern:self.languagePattern.character To:&text];
-    [self setAttributes:self.colorScheme.string andPattern:self.languagePattern.string To:&text];
-    [self setAttributes:self.colorScheme.comment andPattern:self.languagePattern.comment To:&text];
-    [self setAttributedText:text];
-    [self setSelectedRange:selectedRange];
+    [self reloadDataInRange:NSMakeRange(0, self.textStorage.string.length)];
+}
+- (void)reloadDataInRange:(NSRange)range {
+//    NSRange selectedRange = self.selectedRange;
+    [self setAttributes:self.colorScheme.normal andPattern:self.languagePattern.normal inRange:range];
+    [self setAttributes:self.colorScheme.grammar andPattern:self.languagePattern.grammar inRange:range];
+    [self setAttributes:self.colorScheme.keyword andPattern:self.languagePattern.keyword inRange:range];
+    [self setAttributes:self.colorScheme.symbol andPattern:self.languagePattern.symbol inRange:range];
+    [self setAttributes:self.colorScheme.number andPattern:self.languagePattern.number inRange:range];
+    [self setAttributes:self.colorScheme.character andPattern:self.languagePattern.character inRange:range];
+    [self setAttributes:self.colorScheme.string andPattern:self.languagePattern.string inRange:range];
+    [self setAttributes:self.colorScheme.comment andPattern:self.languagePattern.comment inRange:range];
+//    [self setSelectedRange:selectedRange];
 //    [self calculateLineNumbers];
 }
 - (void)calculateLineNumbers {
     [self setTextContainerInset:UIEdgeInsetsMake(self.topPadding, self.leftPadding, self.bottomPadding, self.rightPadding)];
-    UIView* a = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    [a setBackgroundColor:[UIColor redColor]];
-    [self.inputView addSubview:a];
 }
 
 # pragma mark UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
-//    NSLog(@"will reloadData");
-    [self reloadData];
+    // NSLog(@"will reloadData")
+//    NSLog(@"editedRange (%ld, %ld)", self.editedRange.location, self.editedRange.length);
+    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
+//    NSLog(@"\n(%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.text substringWithRange:paragaphRange]);
+    [self reloadDataInRange:paragaphRange];
 }
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    NSLog(@"(%ld, %ld) = %@", range.location, range.length, text);
-//    return YES;
-//}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    self.editedRange = NSMakeRange(range.location, text.length);
+    return YES;
+}
 
-# pragma mark NSLayoutManagerDelegate
+
 @end
