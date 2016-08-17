@@ -10,12 +10,12 @@
 
 @implementation Codeditor
 
-- (instancetype)init {
+- (instancetype)initWithLanguage:(CodeditorLanguageType)languageType andColorScheme:(CodeditorColorSchemeType)colorScheme {
     if(self = [super init]) {
         self.topPadding = self.rightPadding = self.bottomPadding = 5;
         self.leftPadding = 30;
-        self.languagePattern = [CodeditorLanguagePattern initWithLanguage:CodeditorLanguagePlain];
-        self.colorScheme = [CodeditorColorScheme colorSchemeWithColorSchemeType:CodeditorColorSchemeDefault];
+        self.languagePattern = [CodeditorLanguagePattern initWithLanguage:languageType];
+        self.colorScheme = [CodeditorColorScheme colorSchemeWithColorSchemeType:colorScheme];
         [self setBackgroundColor:self.colorScheme.backgroundColor];
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
         [self setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -24,16 +24,13 @@
     return self;
 }
 
-- (instancetype)initWithLanguage:(CodeditorLanguageType)languageType andColorScheme:(CodeditorColorSchemeType)colorScheme {
-    if(self = [self init]) {
-        self.languagePattern = [CodeditorLanguagePattern initWithLanguage:languageType];
-        self.colorScheme = [CodeditorColorScheme colorSchemeWithColorSchemeType:colorScheme];
-        [self setBackgroundColor:self.colorScheme.backgroundColor];
+- (instancetype)init { // with default language type and default color scheme
+    if(self = [self initWithLanguage:CodeditorLanguagePlain andColorScheme:CodeditorColorSchemeDefault]) {
     }
     return self;
 }
 
-- (instancetype)initWithLanguage:(CodeditorLanguageType)languageType {
+- (instancetype)initWithLanguage:(CodeditorLanguageType)languageType { // with default color scheme
     if(self = [self initWithLanguage:languageType andColorScheme:CodeditorColorSchemeDefault]) {
     }
     return self;
@@ -42,6 +39,7 @@
 #pragma mark Attributes
 - (void)setAttributes:(CodeditorColorAttribute*)attributes andPattern:(NSArray<CodeditorPattern*>*)patterns inRange:(NSRange)range {
     for (CodeditorPattern* pattern in patterns) {
+        // NSRegularExpressionAnchorsMatchLines: match it with every single line
         NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern.pattern options:NSRegularExpressionAnchorsMatchLines error:nil];
         [regex enumerateMatchesInString:self.textStorage.string options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
 //            NSLog(@"(%ld, %ld) = %@ -- %@", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range], attributes.attributesDictionary);
@@ -55,6 +53,7 @@
 }
 - (void)reloadDataInRange:(NSRange)range {
 //    NSRange selectedRange = self.selectedRange;
+    // the order represents the priorities, so do not change it if you're not sure about it!
     [self setAttributes:self.colorScheme.normal andPattern:self.languagePattern.normal inRange:range];
     [self setAttributes:self.colorScheme.grammar andPattern:self.languagePattern.grammar inRange:range];
     [self setAttributes:self.colorScheme.keyword andPattern:self.languagePattern.keyword inRange:range];
@@ -78,6 +77,7 @@
 //    NSLog(@"\n(%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.text substringWithRange:paragaphRange]);
     [self reloadDataInRange:paragaphRange];
 }
+// get the edited range, just rerender the changed part, making it faster
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     self.editedRange = NSMakeRange(range.location, text.length);
     return YES;
