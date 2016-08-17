@@ -11,7 +11,9 @@
 @implementation CodeditorLanguagePattern
 
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type
-                          normal:(NSArray<CodeditorPattern*>*)normal
+            codeBlockBeginSymbol:(NSString*)codeBlockBeginSymbol
+              codeBlockEndSymbol:(NSString*)codeBlockEndSymbol
+               withPatternNormal:(NSArray<CodeditorPattern*>*)normal
                          comment:(NSArray<CodeditorPattern*>*)comment
                           number:(NSArray<CodeditorPattern*>*)number
                        character:(NSArray<CodeditorPattern*>*)character
@@ -20,6 +22,8 @@
                          keyword:(NSArray<CodeditorPattern*>*)keyword
                           symbol:(NSArray<CodeditorPattern*>*)symbol {
     if(self = [super init]) {
+        self.codeBlockBeginSymbol = codeBlockBeginSymbol;
+        self.codeBlockEndSymbol = codeBlockEndSymbol;
         self.normal = normal;
         self.language = type;
         self.comment = comment;
@@ -34,14 +38,18 @@
 }
 
 + (instancetype)initWithLanguage:(CodeditorLanguageType)type
-                         comment:(NSArray<CodeditorPattern*>*)comment
+            codeBlockBeginSymbol:(NSString*)codeBlockBeginSymbol
+              codeBlockEndSymbol:(NSString*)codeBlockEndSymbol
+              withPatternComment:(NSArray<CodeditorPattern*>*)comment
                           number:(NSArray<CodeditorPattern*>*)number
                        character:(NSArray<CodeditorPattern*>*)character
                           string:(NSArray<CodeditorPattern*>*)string
                          grammar:(NSArray<CodeditorPattern*>*)grammar
                          keyword:(NSArray<CodeditorPattern*>*)keyword {
     return [[[self class] alloc] initWithLanguage:type
-                                           normal:@[
+                             codeBlockBeginSymbol:codeBlockBeginSymbol
+                               codeBlockEndSymbol:codeBlockEndSymbol
+                                withPatternNormal:@[
                                                     [CodeditorPattern initWithPattern:@"(.|\n)*" globalMatch:YES]
                                                     ]
                                           comment:comment
@@ -57,7 +65,9 @@
 }
 
 + (instancetype)initWithLanguage:(CodeditorLanguageType)type
-                         comment:(NSArray<CodeditorPattern*>*)comment
+            codeBlockBeginSymbol:(NSString*)codeBlockBeginSymbol
+              codeBlockEndSymbol:(NSString*)codeBlockEndSymbol
+              withPatternComment:(NSArray<CodeditorPattern*>*)comment
                           number:(NSArray<CodeditorPattern*>*)number
                        character:(NSArray<CodeditorPattern*>*)character
                           string:(NSArray<CodeditorPattern*>*)string
@@ -65,7 +75,9 @@
                          keyword:(NSArray<CodeditorPattern*>*)keyword
                           symbol:(NSArray<CodeditorPattern*>*)symbol {
     return [[[self class] alloc] initWithLanguage:type
-                                           normal:@[
+                             codeBlockBeginSymbol:codeBlockBeginSymbol
+                               codeBlockEndSymbol:codeBlockEndSymbol
+                                withPatternNormal:@[
                                                     [CodeditorPattern initWithPattern:@"(.|\n)*" globalMatch:YES]
                                                     ]
                                           comment:comment
@@ -79,11 +91,15 @@
 }
 
 + (instancetype)initWithLanguage:(CodeditorLanguageType)type
-                         comment:(NSArray<CodeditorPattern*>*)comment
+            codeBlockBeginSymbol:(NSString*)codeBlockBeginSymbol
+              codeBlockEndSymbol:(NSString*)codeBlockEndSymbol
+              withPatternComment:(NSArray<CodeditorPattern*>*)comment
                          grammar:(NSArray<CodeditorPattern*>*)grammar
                          keyword:(NSArray<CodeditorPattern*>*)keyword {
     return [self initWithLanguage:type
-                          comment:comment
+             codeBlockBeginSymbol:codeBlockBeginSymbol
+               codeBlockEndSymbol:codeBlockEndSymbol
+               withPatternComment:comment
                            number:@[
                                     [CodeditorPattern initWithPattern:@"\\b[0-9]+\\b"]
                                     ]
@@ -102,7 +118,9 @@
     switch (type) {
         case CodeditorLanguageC:
             return [self initWithLanguage:CodeditorLanguagePascal
-                                  comment:@[
+                     codeBlockBeginSymbol:@"{"
+                       codeBlockEndSymbol:@"}"
+                       withPatternComment:@[
                                             [CodeditorPattern initWithPattern:@"//(.*)"],
                                             [CodeditorPattern initWithPattern:@"/\\*((.|\\n)*?)\\*/" globalMatch:YES],
                                             [CodeditorPattern initWithPattern:@"/\\*((?!\\*/).|\\n)*" globalMatch:YES]
@@ -117,7 +135,9 @@
             
         case CodeditorLanguageCpp:
             return [self initWithLanguage:CodeditorLanguageCpp
-                                  comment:@[
+                     codeBlockBeginSymbol:@"{"
+                       codeBlockEndSymbol:@"}"
+                       withPatternComment:@[
                                             [CodeditorPattern initWithPattern:@"//(.*)"],
                                             [CodeditorPattern initWithPattern:@"/\\*((.|\\n)*?)\\*/" globalMatch:YES],
                                             [CodeditorPattern initWithPattern:@"/\\*((?!\\*/).|\\n)*" globalMatch:YES]
@@ -132,7 +152,9 @@
             
         case CodeditorLanguagePascal:
             return [self initWithLanguage:CodeditorLanguagePascal
-                                  comment:@[
+                     codeBlockBeginSymbol:@"begin"
+                       codeBlockEndSymbol:@"end"
+                       withPatternComment:@[
                                             [CodeditorPattern initWithPattern:@"//(.*)"],
                                             [CodeditorPattern initWithPattern:@"\\{((.|\\n)*?)\\}" globalMatch:YES],
                                             [CodeditorPattern initWithPattern:@"\\{((?!\\}).|\\n)*" globalMatch:YES]
@@ -147,7 +169,9 @@
             
         case CodeditorLanguageJava:
             return [self initWithLanguage:CodeditorLanguageJava
-                                  comment:@[
+                     codeBlockBeginSymbol:@"{"
+                       codeBlockEndSymbol:@"}"
+                       withPatternComment:@[
                                             [CodeditorPattern initWithPattern:@"//(.*)"],
                                             [CodeditorPattern initWithPattern:@"/\\*((.|\\n)*?)\\*/" globalMatch:YES],
                                             [CodeditorPattern initWithPattern:@"/\\*((?!\\*/).|\\n)*" globalMatch:YES]
@@ -162,7 +186,9 @@
             
         default:
             return [self initWithLanguage:CodeditorLanguagePlain
-                                  comment:@[]
+                     codeBlockBeginSymbol:@""
+                       codeBlockEndSymbol:@""
+                       withPatternComment:@[]
                                    number:@[]
                                 character:@[]
                                    string:@[]

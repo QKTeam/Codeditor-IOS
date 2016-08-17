@@ -13,6 +13,9 @@
 @interface CodeditorLanguagePattern : NSObject
 
 @property CodeditorLanguageType language;
+@property (nonatomic, strong) NSString* codeBlockBeginSymbol;
+@property (nonatomic, strong) NSString* codeBlockEndSymbol;
+// pattern
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* normal;
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* comment;
 @property (nonatomic, strong) NSArray<CodeditorPattern*>* number;

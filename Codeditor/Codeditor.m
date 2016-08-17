@@ -64,7 +64,8 @@
     [self reloadDataInRange:NSMakeRange(0, self.textStorage.string.length)];
 }
 - (void)reloadDataInRange:(NSRange)range {
-//    NSRange selectedRange = self.selectedRange;
+    if(self.languagePattern.language == CodeditorLanguagePlain) return;
+    // NSRange selectedRange = self.selectedRange;
     // the order represents the priorities, so do not change it if you're not sure about it!
     [self setAttributes:self.colorScheme.normal andPattern:self.languagePattern.normal inRange:range];
     [self setAttributes:self.colorScheme.grammar andPattern:self.languagePattern.grammar inRange:range];
@@ -74,12 +75,10 @@
     [self setAttributes:self.colorScheme.character andPattern:self.languagePattern.character inRange:range];
     [self setAttributes:self.colorScheme.string andPattern:self.languagePattern.string inRange:range];
     [self setAttributes:self.colorScheme.comment andPattern:self.languagePattern.comment inRange:range];
-//    [self setSelectedRange:selectedRange];
+    // [self setSelectedRange:selectedRange];
 }
-
-# pragma mark UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
-    // NSLog(@"will reloadData")
+//    NSLog(@"textChanged");
 //    NSLog(@"editedRange (%ld, %ld)", self.editedRange.location, self.editedRange.length);
 //    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
 //    NSLog(@"\n(%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.text substringWithRange:paragaphRange]);
@@ -92,5 +91,6 @@
     self.editedRange = NSMakeRange(range.location, text.length);
     return YES;
 }
+
 
 @end

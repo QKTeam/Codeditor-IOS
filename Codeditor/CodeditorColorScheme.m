@@ -13,6 +13,7 @@
 - (instancetype)initWithColorSchemeName:(NSString*)name
                              Background:(UIColor*)backgroundColor
                         lineNumberColor:(UIColor*)lineNumberColor
+                            matchedPair:(CodeditorColorAttribute*)matchedPair
                      andAttributeNormal:(CodeditorColorAttribute*)normal
                                 comment:(CodeditorColorAttribute*)comment
                                  number:(CodeditorColorAttribute*)number
@@ -25,6 +26,7 @@
         self.name = name;
         self.backgroundColor = backgroundColor;
         self.lineNumberColor = lineNumberColor;
+        self.matchedPair = matchedPair;
         self.normal = normal;
         self.comment = comment;
         self.number = number;
@@ -42,6 +44,7 @@
              [[[self class] alloc] initWithColorSchemeName:@"Default"
                                                 Background:[UIColor whiteColor]
                                            lineNumberColor:[UIColor grayColor]
+                                               matchedPair:[CodeditorColorAttribute initWithColor:[UIColor blackColor] backgroundColor:[UIColor yellowColor]]
                                         andAttributeNormal:[CodeditorColorAttribute initWithColor:[UIColor blackColor]]
                                                    comment:[CodeditorColorAttribute initWithColor:[UIColor greenColor]]
                                                     number:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]

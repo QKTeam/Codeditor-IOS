@@ -12,9 +12,10 @@
 
 @interface Codeditor : UITextView <UITextViewDelegate>
 
-@property NSRange editedRange;
 @property (nonatomic, strong) CodeditorColorScheme* colorScheme;
 @property (nonatomic, strong) CodeditorLanguagePattern* languagePattern;
+
+@property (nonatomic) NSRange editedRange; // for optimize range for rerender data attributes
 
 
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type andColorScheme:(CodeditorColorSchemeType)colorScheme;

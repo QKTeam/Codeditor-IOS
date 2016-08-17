@@ -18,6 +18,8 @@ typedef enum {
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) UIColor* backgroundColor;
 @property (nonatomic, strong) UIColor* lineNumberColor;
+@property (nonatomic, strong) CodeditorColorAttribute* matchedPair; // for pair like () [] {} etc. when cursor stops there
+// regex pattern
 @property (nonatomic, strong) CodeditorColorAttribute* normal;
 @property (nonatomic, strong) CodeditorColorAttribute* comment;
 @property (nonatomic, strong) CodeditorColorAttribute* number;
