@@ -87,8 +87,16 @@
 - (void)textViewDidChange:(UITextView *)textView {
 //    NSLog(@"textChanged");
 //    NSLog(@"editedRange (%ld, %ld)", self.editedRange.location, self.editedRange.length);
-//    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
-//    NSLog(@"\n(%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.text substringWithRange:paragaphRange]);
+    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
+//    NSLog(@"paragraph - (%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.textStorage.string substringWithRange:paragaphRange]);
+#pragma mark auto indent
+    if([self paragraphWithCodeBlockEndSymbol:paragaphRange]) {
+//        NSLog(@"ended symbol!");
+        if(self.lastTypedString.length == 1 && [self.lastTypedString characterAtIndex:0] == [self.languagePattern.codeBlockEndSymbol characterAtIndex:self.languagePattern.codeBlockEndSymbol.length-1]) {
+            [self removeOneIndentFromParagraph:paragaphRange];
+        }
+    }
+    
 //    [self reloadDataInRange:paragaphRange];
     // cannot use reloadDataInRange, it may make comment block (/* ..(with '\n') */) error
     [self reloadData];
@@ -97,6 +105,7 @@
     // get the edited range, just rerender the changed part, making it faster
 //    NSLog(@"shouldChangeTextInRange (%ld, %ld) with text (%@)", range.location, range.length, text);
     self.editedRange = NSMakeRange(range.location, text.length);
+    self.lastTypedString = text;
     
 #pragma mark auto indent
     NSRange paragraphRange = [self.textStorage.string paragraphRangeForRange:range];
@@ -150,6 +159,25 @@
         }
     }
     return @"";
+}
+- (BOOL)paragraphWithCodeBlockEndSymbol:(NSRange)range {
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^\\s*|\\n$" options:NSRegularExpressionAnchorsMatchLines error:nil];
+    NSMutableString* str = [[self.textStorage.string substringWithRange:range] mutableCopy];
+    [regex replaceMatchesInString:str options:0 range:NSMakeRange(0, str.length) withTemplate:@""];
+//    NSLog(@"str = [%@]", str);
+    return [str isEqualToString:self.languagePattern.codeBlockEndSymbol];
+}
+- (void)removeOneIndentFromParagraph:(NSRange)range {
+//    NSLog(@"remove one idnent from paragraph (%ld, %ld) = [%@]", range.location, range.length, [self.textStorage.string substringWithRange:range]);
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^\\s{1,4}" options:NSRegularExpressionAnchorsMatchLines error:nil];
+    [regex enumerateMatchesInString:self.textStorage.string options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+//        NSLog(@"remove indent: (%ld, %ld) = [%@]", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range]);
+        NSRange selectedRange = self.selectedRange;
+        selectedRange.length = 0;
+        selectedRange.location -= result.range.length;
+        [self loadText:[self.textStorage.string stringByReplacingCharactersInRange:result.range withString:@""]];
+        [self setSelectedRange:selectedRange];
+    }];
 }
 
 @end

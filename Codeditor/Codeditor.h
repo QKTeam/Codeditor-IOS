@@ -17,6 +17,8 @@
 
 @property (nonatomic) NSRange editedRange; // for optimize range for rerender data attributes
 
+@property (nonatomic, strong) NSString* lastTypedString; // for judge whether should remove indent
+
 
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type andColorScheme:(CodeditorColorSchemeType)colorScheme;
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type;
