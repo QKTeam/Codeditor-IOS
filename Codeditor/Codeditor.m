@@ -58,8 +58,8 @@
 - (void)setAttributes:(CodeditorColorAttribute*)attributes andPattern:(NSArray<CodeditorPattern*>*)patterns inRange:(NSRange)range {
     for (CodeditorPattern* pattern in patterns) {
         // NSRegularExpressionAnchorsMatchLines: match it with every single line
-        NSRegularExpressionOptions option = NSRegularExpressionDotMatchesLineSeparators;//NSRegularExpressionAnchorsMatchLines;
-//        if(pattern.globalMatch) option = NSRegularExpressionDotMatchesLineSeparators;
+        NSRegularExpressionOptions option = NSRegularExpressionAnchorsMatchLines;
+        if(pattern.globalMatch) option = NSRegularExpressionDotMatchesLineSeparators;
         NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern.pattern options:option error:nil];
         [regex enumerateMatchesInString:self.textStorage.string options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
 //            NSLog(@"(%ld, %ld) = %@ -- %@", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range], attributes.attributesDictionary);

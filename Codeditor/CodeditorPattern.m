@@ -52,7 +52,7 @@
     return [[[self class] alloc] initWithPattern:pattern
                                       leftOffset:0
                                      rightOffset:0
-                                     globalMatch:NO
+                                     globalMatch:globalMatch
             ];
 }
 
