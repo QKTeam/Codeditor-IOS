@@ -46,8 +46,7 @@
     return self;
 }
 
-#pragma mark override setText
-// DO NOT directly call setText!
+#pragma mark override setText // DO NOT directly call setText!
 - (void)loadText:(NSString*)text {
     text = [text stringByReplacingOccurrencesOfString:@"\t" withString:@"    "];
     [self setText:text];
@@ -86,7 +85,7 @@
     // [self setSelectedRange:selectedRange];
 }
 - (void)textViewDidChange:(UITextView *)textView {
-    NSLog(@"textChanged");
+//    NSLog(@"textChanged");
 //    NSLog(@"editedRange (%ld, %ld)", self.editedRange.location, self.editedRange.length);
 //    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
 //    NSLog(@"\n(%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.text substringWithRange:paragaphRange]);
@@ -96,7 +95,7 @@
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     // get the edited range, just rerender the changed part, making it faster
-    NSLog(@"shouldChangeTextInRange (%ld, %ld) with text (%@)", range.location, range.length, text);
+//    NSLog(@"shouldChangeTextInRange (%ld, %ld) with text (%@)", range.location, range.length, text);
     self.editedRange = NSMakeRange(range.location, text.length);
     
 #pragma mark auto indent
@@ -110,8 +109,8 @@
         return NO;
     }
     else if([text isEqualToString:@"\n"]) {
-        NSLog(@"typed ender");
-        NSLog(@"paragraphRange = (%ld, %ld)", paragraphRange.location, paragraphRange.length);
+//        NSLog(@"typed ender");
+//        NSLog(@"paragraphRange = (%ld, %ld)", paragraphRange.location, paragraphRange.length);
         text = [text stringByAppendingString:[self getIndentFromParagraph:paragraphRange]];
         [self.textStorage replaceCharactersInRange:range withString:text];
         [self setSelectedRange:NSMakeRange(range.location + text.length, 0)];
@@ -146,7 +145,7 @@
                 return [self.textStorage.string substringToIndex:index];
             }
             NSString* endedString = [self.textStorage.string substringWithRange:NSMakeRange(index - self.languagePattern.codeBlockBeginSymbol.length + 1, self.languagePattern.codeBlockBeginSymbol.length)];
-            NSLog(@"endedString = %@", endedString);
+//            NSLog(@"endedString = %@", endedString);
             return endedString;
         }
     }
