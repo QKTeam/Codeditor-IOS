@@ -21,5 +21,6 @@
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type andColorScheme:(CodeditorColorSchemeType)colorScheme;
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type;
 - (void)reloadData;
+- (void)loadText:(NSString*)text;
 
 @end

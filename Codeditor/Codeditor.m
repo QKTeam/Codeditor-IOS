@@ -46,6 +46,14 @@
     return self;
 }
 
+#pragma mark override setText
+// DO NOT directly call setText!
+- (void)loadText:(NSString*)text {
+    text = [text stringByReplacingOccurrencesOfString:@"\t" withString:@"    "];
+    [self setText:text];
+    [self reloadData];
+}
+
 #pragma mark Attributes
 - (void)setAttributes:(CodeditorColorAttribute*)attributes andPattern:(NSArray<CodeditorPattern*>*)patterns inRange:(NSRange)range {
     for (CodeditorPattern* pattern in patterns) {
@@ -78,7 +86,7 @@
     // [self setSelectedRange:selectedRange];
 }
 - (void)textViewDidChange:(UITextView *)textView {
-//    NSLog(@"textChanged");
+    NSLog(@"textChanged");
 //    NSLog(@"editedRange (%ld, %ld)", self.editedRange.location, self.editedRange.length);
 //    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
 //    NSLog(@"\n(%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.text substringWithRange:paragaphRange]);
@@ -86,11 +94,63 @@
     // cannot use reloadDataInRange, it may make comment block (/* ..(with '\n') */) error
     [self reloadData];
 }
-// get the edited range, just rerender the changed part, making it faster
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    // get the edited range, just rerender the changed part, making it faster
+    NSLog(@"shouldChangeTextInRange (%ld, %ld) with text (%@)", range.location, range.length, text);
     self.editedRange = NSMakeRange(range.location, text.length);
+    
+#pragma mark auto indent
+    NSRange paragraphRange = [self.textStorage.string paragraphRangeForRange:range];
+    if([text isEqualToString:@"\t"]) {
+        text = @"    ";
+        [self.textStorage replaceCharactersInRange:range withString:text];
+        [self setSelectedRange:NSMakeRange(range.location + text.length, 0)];
+        
+        [self textViewDidChange:self]; // beacase of value NO returned, so have to call it manually
+        return NO;
+    }
+    else if([text isEqualToString:@"\n"]) {
+        NSLog(@"typed ender");
+        NSLog(@"paragraphRange = (%ld, %ld)", paragraphRange.location, paragraphRange.length);
+        text = [text stringByAppendingString:[self getIndentFromParagraph:paragraphRange]];
+        [self.textStorage replaceCharactersInRange:range withString:text];
+        [self setSelectedRange:NSMakeRange(range.location + text.length, 0)];
+        
+        [self textViewDidChange:self]; // beacase of value NO returned, so have to call it manually
+        return NO;
+    }
     return YES;
 }
-
+- (NSString*)getIndentFromParagraph:(NSRange)range {
+    NSMutableString* indent = [@"" mutableCopy];
+    for(NSInteger i = 0; i < range.length; i++) {
+        NSInteger index = range.location + i;
+        if([self.textStorage.string characterAtIndex:index] != ' ') {
+            break;
+        }
+        [indent appendString:@" "];
+    }
+    if([self paragraphEndedWithCodeBlockBeginSymbol:(NSRange)range]) [indent appendString:@"    "];
+    return indent;
+}
+- (BOOL)paragraphEndedWithCodeBlockBeginSymbol:(NSRange)range {
+    return [[self paragraph:range endedStringWithLength:self.languagePattern.codeBlockBeginSymbol.length]
+            isEqualToString:self.languagePattern.codeBlockBeginSymbol];
+}
+- (NSString*)paragraph:(NSRange)range endedStringWithLength:(NSInteger)length {
+    for(NSInteger i = range.length - 1; i >= 0; i--) {
+        NSInteger index = range.location + i;
+        char character = [self.textStorage.string characterAtIndex:index];
+        if(character != ' ' && character != '\n') {
+            if(index - length + 1 < 0) {
+                return [self.textStorage.string substringToIndex:index];
+            }
+            NSString* endedString = [self.textStorage.string substringWithRange:NSMakeRange(index - self.languagePattern.codeBlockBeginSymbol.length + 1, self.languagePattern.codeBlockBeginSymbol.length)];
+            NSLog(@"endedString = %@", endedString);
+            return endedString;
+        }
+    }
+    return @"";
+}
 
 @end
