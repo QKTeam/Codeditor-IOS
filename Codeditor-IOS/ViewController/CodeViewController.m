@@ -26,8 +26,7 @@ NSString* getSuffix(NSString* filename) {
         self.deleted = NO;
         
         self.navigationItem.rightBarButtonItems = @[
-                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCode)],
-                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self.code action:@selector(saveFile)]
+                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCode)]
                                                     ];
         self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
         self.filenameInput = [[UITextField alloc] init];
