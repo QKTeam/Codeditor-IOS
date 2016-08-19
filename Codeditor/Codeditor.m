@@ -103,13 +103,34 @@
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     // get the edited range, just rerender the changed part, making it faster
-//    NSLog(@"shouldChangeTextInRange (%ld, %ld) with text (%@)", range.location, range.length, text);
+//    NSLog(@"shouldChangeTextInRange (%ld, %ld) with text [%@]", range.location, range.length, text);
     self.editedRange = NSMakeRange(range.location, text.length);
     self.lastTypedString = text;
     
 #pragma mark auto indent
     NSRange paragraphRange = [self.textStorage.string paragraphRangeForRange:range];
-    if([text isEqualToString:@"\t"]) {
+    if([[self.textStorage.string substringWithRange:paragraphRange] characterAtIndex:paragraphRange.length - 1] == '\n') {
+        --paragraphRange.length;
+    }
+    NSLog(@"paragraph range (%ld, %ld)", paragraphRange.location, paragraphRange.length);
+    if(range.length == 1 && [text isEqualToString:@""] && paragraphRange.length > 0
+       && ![[self.textStorage.string substringWithRange:range] isEqualToString:@"\n"]) { // make delete smarter!
+        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^\\s*$" options:NSRegularExpressionAnchorsMatchLines error:nil];
+        __block BOOL normalDelete = YES;
+        [regex enumerateMatchesInString:self.textStorage.string options:0 range:paragraphRange usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+            NSLog(@"delete indent (%ld, %ld) [%@] ! Just delete more!", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range]);
+            NSInteger needDeleteIndentLength = result.range.length - (result.range.length - 1) / 4 * 4;
+            NSLog(@"need delete indent length = %ld", needDeleteIndentLength);
+            NSRange deleteIndentRange = NSMakeRange(result.range.location + result.range.length - needDeleteIndentLength, needDeleteIndentLength);
+            NSLog(@"deleted range (%ld, %ld) = [%@]", deleteIndentRange.location, deleteIndentRange.length, [self.textStorage.string substringWithRange:deleteIndentRange]);
+            [self.textStorage replaceCharactersInRange:deleteIndentRange withString:@""];
+            [self setSelectedRange:NSMakeRange(deleteIndentRange.location, 0)];
+            normalDelete = NO;
+            *stop = YES;
+        }];
+        return normalDelete;
+    }
+    else if([text isEqualToString:@"\t"]) {
         text = @"    ";
         [self.textStorage replaceCharactersInRange:range withString:text];
         [self setSelectedRange:NSMakeRange(range.location + text.length, 0)];
@@ -130,14 +151,12 @@
     return YES;
 }
 - (NSString*)getIndentFromParagraph:(NSRange)range {
-    NSMutableString* indent = [@"" mutableCopy];
-    for(NSInteger i = 0; i < range.length; i++) {
-        NSInteger index = range.location + i;
-        if([self.textStorage.string characterAtIndex:index] != ' ') {
-            break;
-        }
-        [indent appendString:@" "];
-    }
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^\\s*" options:NSRegularExpressionAnchorsMatchLines error:nil];
+    __block NSMutableString* indent;
+    [regex enumerateMatchesInString:self.textStorage.string options:0 range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        indent = [[self.textStorage.string substringWithRange:result.range] mutableCopy];
+        *stop = YES;
+    }];
     if([self paragraphEndedWithCodeBlockBeginSymbol:(NSRange)range]) [indent appendString:@"    "];
     return indent;
 }
@@ -175,8 +194,10 @@
         NSRange selectedRange = self.selectedRange;
         selectedRange.length = 0;
         selectedRange.location -= result.range.length;
-        [self loadText:[self.textStorage.string stringByReplacingCharactersInRange:result.range withString:@""]];
+//        [self loadText:[self.textStorage.string stringByReplacingCharactersInRange:result.range withString:@""]];
+        [self.textStorage replaceCharactersInRange:result.range withString:@""];
         [self setSelectedRange:selectedRange];
+        *stop = YES; // only once
     }];
 }
 
