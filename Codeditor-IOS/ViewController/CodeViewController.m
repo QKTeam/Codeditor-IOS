@@ -27,7 +27,8 @@ NSString* getSuffix(NSString* filename) {
         self.deleted = NO;
         
         self.navigationItem.rightBarButtonItems = @[
-                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCode)]
+                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCode)],
+                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(copyCode)]
                                                     ];
         self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
         self.filenameInput = [[UITextField alloc] init];
@@ -70,6 +71,34 @@ NSString* getSuffix(NSString* filename) {
     }
 }
 
+- (void)renewFilename {
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"\\(([0-9]+)\\)\\.((?!\\.).)*?$" options:0 error:nil];
+    __block BOOL hasNumberSuffix = NO;
+    [regex enumerateMatchesInString:self.filenameInput.text options:0 range:NSMakeRange(0, self.filenameInput.text.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        hasNumberSuffix = YES;
+        NSRange numberRange = [result rangeAtIndex:1];
+        NSInteger number = [[self.filenameInput.text substringWithRange:numberRange] integerValue];
+        NSString* nextNumberString = [NSString stringWithFormat:@"%ld", number + 1];
+        [self.filenameInput setText:[self.filenameInput.text stringByReplacingCharactersInRange:numberRange withString:nextNumberString]];
+    }];
+    if(!hasNumberSuffix) {
+        regex = [NSRegularExpression regularExpressionWithPattern:@"\\.((?!\\.).)*?$" options:NSRegularExpressionAnchorsMatchLines error:nil];
+        [self.filenameInput setText:[regex stringByReplacingMatchesInString:self.filenameInput.text options:0 range:NSMakeRange(0, self.filenameInput.text.length) withTemplate:@" (1)$0"]];
+    }
+}
+- (void)renewCode {
+    while(![self.code renewFilename:self.filenameInput.text]) {
+        [self renewFilename];
+    }
+    [self.code renewContent:self.codeView.text];
+    [self.code saveFile];
+    CodeditorLanguageType languageType = [CodeditorLanguage getLanguageByFileSuffixName:getSuffix(self.code.filename)];
+    [self.codeView setLanguageType:languageType];
+}
+- (void)copyCode {
+    [self renewFilename];
+    [self renewCode];
+}
 - (void)deleteCode {
     [self.code deleteFile];
     self.deleted = YES;
@@ -77,14 +106,13 @@ NSString* getSuffix(NSString* filename) {
 }
 
 #pragma mark UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [textField selectAll:textField];
+}
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self.code deleteFile];
-    while(![self.code renewFilename:self.filenameInput.text]) {
-        [self.filenameInput setText:[NSString stringWithFormat:@"Another %@", self.filenameInput.text]];
-    }
-    [self.code saveFile];
-    CodeditorLanguageType languageType = [CodeditorLanguage getLanguageByFileSuffixName:getSuffix(self.code.filename)];
-    [self.codeView setLanguageType:languageType];
+    [self renewCode];
+    
 }
 
 @end
