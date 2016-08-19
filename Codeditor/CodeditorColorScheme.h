@@ -16,10 +16,12 @@
 @interface CodeditorColorScheme : NSObject
 
 typedef enum {
-    CodeditorColorSchemeDefault = 0
+    CodeditorColorSchemeXcode = 0,
+    CodeditorColorSchemeDefault
 } CodeditorColorSchemeType;
 
 @property (nonatomic, strong) NSString* name;
+@property (nonatomic) CodeditorColorSchemeType colorSchemeType;
 @property (nonatomic, strong) UIColor* backgroundColor;
 @property (nonatomic, strong) UIColor* lineNumberColor;
 @property (nonatomic, strong) CodeditorColorAttribute* matchedPair; // for pair like () [] {} etc. when cursor stops there

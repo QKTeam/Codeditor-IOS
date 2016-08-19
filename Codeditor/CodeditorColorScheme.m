@@ -11,6 +11,7 @@
 @implementation CodeditorColorScheme
 
 - (instancetype)initWithColorSchemeName:(NSString*)name
+                        colorSchemeType:(CodeditorColorSchemeType)type
                              Background:(UIColor*)backgroundColor
                         lineNumberColor:(UIColor*)lineNumberColor
                             matchedPair:(CodeditorColorAttribute*)matchedPair
@@ -24,6 +25,7 @@
                                  symbol:(CodeditorColorAttribute*)symbol {
     if(self = [super init]) {
         self.name = name;
+        self.colorSchemeType = type;
         self.backgroundColor = backgroundColor;
         self.lineNumberColor = lineNumberColor;
         self.matchedPair = matchedPair;
@@ -40,25 +42,32 @@
 }
 
 + (NSArray<CodeditorColorScheme*>*)colorSchemes {
-    return @[
-             [[[self class] alloc] initWithColorSchemeName:@"XCode"
-                                                Background:RGB2(0xFFFFFF)
-                                           lineNumberColor:RGB2(0x808080)
-                                               matchedPair:[CodeditorColorAttribute initWithColor:RGB2(0x000000) backgroundColor:RGB2(0xF4C20D)]
-                                        andAttributeNormal:[CodeditorColorAttribute initWithColor:RGB2(0x000000)]
-                                                   comment:[CodeditorColorAttribute initWithColor:RGB2(0x007400)]
-                                                    number:[CodeditorColorAttribute initWithColor:RGB2(0x1C00CF)]
-                                                 character:[CodeditorColorAttribute initWithColor:RGB2(0x1C00CF)]
-                                                    string:[CodeditorColorAttribute initWithColor:RGB2(0xC41A16)]
-                                                   grammar:[CodeditorColorAttribute initWithColor:RGB2(0xAA0D91)]
-                                                   keyword:[CodeditorColorAttribute initWithColor:RGB2(0x2E0D6E)]
-                                                    symbol:[CodeditorColorAttribute initWithColor:RGB2(0x000000)]
-              ]
-             ];
+    NSMutableArray* colorSchemes;
+    for(CodeditorColorSchemeType type = 0; type < CodeditorColorSchemeDefault; type++) {
+        [colorSchemes addObject:[self colorSchemeWithColorSchemeType:type]];
+    }
+    return colorSchemes;
 }
 
 + (instancetype)colorSchemeWithColorSchemeType:(CodeditorColorSchemeType)type {
-    return [self colorSchemes][type];
+    switch (type) {
+        case CodeditorColorSchemeXcode:
+        default: // CodeditorColorSchemeDefault
+            return [[[self class] alloc] initWithColorSchemeName:@"Xcode"
+                                                 colorSchemeType:CodeditorColorSchemeXcode
+                                                      Background:RGB2(0xFFFFFF)
+                                                 lineNumberColor:RGB2(0x808080)
+                                                     matchedPair:[CodeditorColorAttribute initWithColor:RGB2(0x000000) backgroundColor:RGB2(0xF4C20D)]
+                                              andAttributeNormal:[CodeditorColorAttribute initWithColor:RGB2(0x000000)]
+                                                         comment:[CodeditorColorAttribute initWithColor:RGB2(0x007400)]
+                                                          number:[CodeditorColorAttribute initWithColor:RGB2(0x1C00CF)]
+                                                       character:[CodeditorColorAttribute initWithColor:RGB2(0x1C00CF)]
+                                                          string:[CodeditorColorAttribute initWithColor:RGB2(0xC41A16)]
+                                                         grammar:[CodeditorColorAttribute initWithColor:RGB2(0xAA0D91)]
+                                                         keyword:[CodeditorColorAttribute initWithColor:RGB2(0x2E0D6E)]
+                                                          symbol:[CodeditorColorAttribute initWithColor:RGB2(0x000000)]
+                    ];
+    }
 }
 
 @end
