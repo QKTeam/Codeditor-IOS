@@ -112,17 +112,20 @@
     if([[self.textStorage.string substringWithRange:paragraphRange] characterAtIndex:paragraphRange.length - 1] == '\n') {
         --paragraphRange.length;
     }
-    NSLog(@"paragraph range (%ld, %ld)", paragraphRange.location, paragraphRange.length);
+//    NSLog(@"paragraph range (%ld, %ld)", paragraphRange.location, paragraphRange.length);
     if(range.length == 1 && [text isEqualToString:@""] && paragraphRange.length > 0
        && ![[self.textStorage.string substringWithRange:range] isEqualToString:@"\n"]) { // make delete smarter!
+        NSRange paragraphRangeToSelection = paragraphRange;
+        paragraphRangeToSelection.length = range.location - paragraphRange.location + 1;
+//        NSLog(@"paragraphRangeToSelection range (%ld, %ld)", paragraphRangeToSelection.location, paragraphRangeToSelection.length);
         NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^\\s*$" options:NSRegularExpressionAnchorsMatchLines error:nil];
         __block BOOL normalDelete = YES;
-        [regex enumerateMatchesInString:self.textStorage.string options:0 range:paragraphRange usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-            NSLog(@"delete indent (%ld, %ld) [%@] ! Just delete more!", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range]);
+        [regex enumerateMatchesInString:self.textStorage.string options:0 range:paragraphRangeToSelection usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+//            NSLog(@"delete indent (%ld, %ld) [%@] ! Just delete more!", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range]);
             NSInteger needDeleteIndentLength = result.range.length - (result.range.length - 1) / 4 * 4;
-            NSLog(@"need delete indent length = %ld", needDeleteIndentLength);
+//            NSLog(@"need delete indent length = %ld", needDeleteIndentLength);
             NSRange deleteIndentRange = NSMakeRange(result.range.location + result.range.length - needDeleteIndentLength, needDeleteIndentLength);
-            NSLog(@"deleted range (%ld, %ld) = [%@]", deleteIndentRange.location, deleteIndentRange.length, [self.textStorage.string substringWithRange:deleteIndentRange]);
+//            NSLog(@"deleted range (%ld, %ld) = [%@]", deleteIndentRange.location, deleteIndentRange.length, [self.textStorage.string substringWithRange:deleteIndentRange]);
             [self.textStorage replaceCharactersInRange:deleteIndentRange withString:@""];
             [self setSelectedRange:NSMakeRange(deleteIndentRange.location, 0)];
             normalDelete = NO;
