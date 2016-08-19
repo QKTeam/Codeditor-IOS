@@ -59,7 +59,7 @@
                                           grammar:grammar
                                           keyword:keyword
                                            symbol:@[
-                                                    [CodeditorPattern initWithPattern:@"[^a-zA-Z0-9_\\[\\]\\(\\)\\{\\},.;]"]
+                                                    [CodeditorPattern initWithPattern:@"[^a-zA-Z0-9_\\[\\]\\(\\)\\{\\},.;#]"]
                                                     ]
             ];
 }
@@ -125,7 +125,8 @@
                                             [CodeditorPattern initWithPattern:@"/\\*(.*?)(\\*/|$)" globalMatch:YES]
                                             ]
                                   grammar:@[
-                                            [CodeditorPattern initWithPattern:@"\\b(void|bool|char|float|int|double|short|long|unsigned|signed|struct|union|enum|typedef|sizeof|auto|static|register|extern|const|volatile|return|continue|break|goto|if|else|switch|case|default|for|do|while|include)\\b"]
+                                            [CodeditorPattern initWithPattern:@"\\b(void|bool|char|float|int|double|short|long|unsigned|signed|struct|union|enum|typedef|sizeof|auto|static|register|extern|const|volatile|return|continue|break|goto|if|else|switch|case|default|for|do|while)\\b"],
+                                            [CodeditorPattern initWithPattern:@"^\\s*#include"]
                                             ]
                                   keyword:@[
                                             [CodeditorPattern initWithPattern:@"\\b([a-zA-Z0-9_]+?)\\(" rightOffset:1]
@@ -141,7 +142,8 @@
                                             [CodeditorPattern initWithPattern:@"/\\*(.*?)(\\*/|$)" globalMatch:YES]
                                             ]
                                   grammar:@[
-                                            [CodeditorPattern initWithPattern:@"\\b(asm|auto|bool|break|case|catch|char|class|const|const_cast|continue|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|false|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_cast|struct|switch|template|this|throw|true|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while|include)\\b"]
+                                            [CodeditorPattern initWithPattern:@"\\b(asm|auto|bool|break|case|catch|char|class|const|const_cast|continue|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|false|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_cast|struct|switch|template|this|throw|true|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\\b"],
+                                            [CodeditorPattern initWithPattern:@"^\\s*#include"]
                                             ]
                                   keyword:@[
                                             [CodeditorPattern initWithPattern:@"\\b([a-zA-Z0-9_]+?)\\(" rightOffset:1]

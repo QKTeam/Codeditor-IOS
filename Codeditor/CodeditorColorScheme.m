@@ -41,18 +41,18 @@
 
 + (NSArray<CodeditorColorScheme*>*)colorSchemes {
     return @[
-             [[[self class] alloc] initWithColorSchemeName:@"Default"
-                                                Background:[UIColor whiteColor]
-                                           lineNumberColor:[UIColor grayColor]
-                                               matchedPair:[CodeditorColorAttribute initWithColor:[UIColor blackColor] backgroundColor:[UIColor yellowColor]]
-                                        andAttributeNormal:[CodeditorColorAttribute initWithColor:[UIColor blackColor]]
-                                                   comment:[CodeditorColorAttribute initWithColor:[UIColor greenColor]]
-                                                    number:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]
-                                                 character:[CodeditorColorAttribute initWithColor:[UIColor blueColor]]
-                                                    string:[CodeditorColorAttribute initWithColor:[UIColor redColor]]
-                                                   grammar:[CodeditorColorAttribute initWithColor:[UIColor purpleColor]]
-                                                   keyword:[CodeditorColorAttribute initWithColor:[UIColor orangeColor]]
-                                                    symbol:[CodeditorColorAttribute initWithColor:[UIColor purpleColor]]
+             [[[self class] alloc] initWithColorSchemeName:@"XCode"
+                                                Background:RGB2(0xFFFFFF)
+                                           lineNumberColor:RGB2(0x808080)
+                                               matchedPair:[CodeditorColorAttribute initWithColor:RGB2(0x000000) backgroundColor:RGB2(0xF4C20D)]
+                                        andAttributeNormal:[CodeditorColorAttribute initWithColor:RGB2(0x000000)]
+                                                   comment:[CodeditorColorAttribute initWithColor:RGB2(0x007400)]
+                                                    number:[CodeditorColorAttribute initWithColor:RGB2(0x1C00CF)]
+                                                 character:[CodeditorColorAttribute initWithColor:RGB2(0x1C00CF)]
+                                                    string:[CodeditorColorAttribute initWithColor:RGB2(0xC41A16)]
+                                                   grammar:[CodeditorColorAttribute initWithColor:RGB2(0xAA0D91)]
+                                                   keyword:[CodeditorColorAttribute initWithColor:RGB2(0x2E0D6E)]
+                                                    symbol:[CodeditorColorAttribute initWithColor:RGB2(0x000000)]
               ]
              ];
 }
