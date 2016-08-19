@@ -57,7 +57,7 @@ NSString* getSuffix(NSString* filename) {
     return self;
 }
 - (instancetype)init {
-    if(self = [self initWithCodeData:[[FileModel alloc] initWithFilename:[NSString stringWithFormat:@"%@", [NSDate dateWithTimeIntervalSinceNow:0]] content:@""]]) {
+    if(self = [self initWithCodeData:[[FileModel alloc] initWithFilename:[NSString stringWithFormat:@"%@", now()] content:@""]]) {
     }
     return self;
 }

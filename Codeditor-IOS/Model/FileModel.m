@@ -16,6 +16,12 @@ NSString* filePath(NSString* filename) {
 //    NSLog(@"path = [%@]",path);
     return path;
 }
+NSDate* now() {
+    NSTimeZone *zone = [NSTimeZone defaultTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:[NSDate date]];
+    NSDate *nowDate=[NSDate dateWithTimeIntervalSinceNow:interval];
+    return nowDate;
+}
 
 - (instancetype)initWithFilename:(NSString*)filename
                      createdTime:(NSDate*)createdTime
@@ -31,10 +37,9 @@ NSString* filePath(NSString* filename) {
 }
 - (instancetype)initWithFilename:(NSString*)filename
                          content:(NSString*)content {
-    NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
     if(self = [self initWithFilename:filename
-                      createdTime:now
-                      updatedTime:now
+                      createdTime:now()
+                      updatedTime:now()
                              content:content]) {
     }
     return self;
@@ -43,8 +48,7 @@ NSString* filePath(NSString* filename) {
 
 # pragma mark override setContent & setFilename to automatically setUpdatedTime
 - (void)renewUpdatedTime {
-    NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
-    [self setUpdatedTime:now];
+    [self setUpdatedTime:now()];
 }
 - (void)renewContent:(NSString *)content {
     [self renewUpdatedTime];
