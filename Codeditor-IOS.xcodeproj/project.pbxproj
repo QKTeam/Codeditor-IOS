@@ -21,6 +21,7 @@
 		5FEBC26D1D66EC5E00B957C2 /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC26C1D66EC5E00B957C2 /* FileViewController.m */; };
 		5FEBC2701D66EC6600B957C2 /* CodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC26F1D66EC6600B957C2 /* CodeViewController.m */; };
 		5FEBC2731D66F07600B957C2 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC2721D66F07600B957C2 /* FileModel.m */; };
+		5FEBC2761D673EC000B957C2 /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC2751D673EC000B957C2 /* TimeModel.m */; };
 		F4B1ED89C97CA41C59E30774 /* libPods-Codeditor-IOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		5FEBC26F1D66EC6600B957C2 /* CodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeViewController.m; sourceTree = "<group>"; };
 		5FEBC2711D66F07600B957C2 /* FileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileModel.h; sourceTree = "<group>"; };
 		5FEBC2721D66F07600B957C2 /* FileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileModel.m; sourceTree = "<group>"; };
+		5FEBC2741D673EC000B957C2 /* TimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeModel.h; sourceTree = "<group>"; };
+		5FEBC2751D673EC000B957C2 /* TimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeModel.m; sourceTree = "<group>"; };
 		855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Codeditor-IOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeditor-IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +109,7 @@
 				5FCAB35F1D62BF850039F8E1 /* LaunchScreen.storyboard */,
 				5FCAB3621D62BF850039F8E1 /* Info.plist */,
 				5FCAB3511D62BF850039F8E1 /* Supporting Files */,
+				5FEBC2771D67400300B957C2 /* View */,
 				5FEBC2661D66EC4A00B957C2 /* Model */,
 				5FEBC2671D66EC4A00B957C2 /* ViewController */,
 			);
@@ -146,6 +150,8 @@
 			children = (
 				5FEBC2711D66F07600B957C2 /* FileModel.h */,
 				5FEBC2721D66F07600B957C2 /* FileModel.m */,
+				5FEBC2741D673EC000B957C2 /* TimeModel.h */,
+				5FEBC2751D673EC000B957C2 /* TimeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,6 +165,13 @@
 				5FEBC26F1D66EC6600B957C2 /* CodeViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5FEBC2771D67400300B957C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A6A3FD1AFE7EBF2E28B4156C /* Frameworks */ = {
@@ -349,6 +362,7 @@
 				5FEBC2731D66F07600B957C2 /* FileModel.m in Sources */,
 				5FCAB3821D62E3C20039F8E1 /* CodeditorPattern.m in Sources */,
 				5FCAB3731D62D6A20039F8E1 /* CodeditorColorScheme.m in Sources */,
+				5FEBC2761D673EC000B957C2 /* TimeModel.m in Sources */,
 				5FCAB37F1D62E3A90039F8E1 /* CodeditorLanguage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

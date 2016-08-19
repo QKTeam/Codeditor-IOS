@@ -10,8 +10,6 @@
 
 @interface FileModel : NSObject
 
-NSDate* now();
-
 @property (nonatomic, strong) NSString* filename;
 @property (nonatomic, strong) NSDate* createdTime;
 @property (nonatomic, strong) NSDate* updatedTime;

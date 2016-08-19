@@ -7,6 +7,7 @@
 //
 
 #import "CodeViewController.h"
+#import "TimeModel.h"
 
 @implementation CodeViewController
 
@@ -57,7 +58,7 @@ NSString* getSuffix(NSString* filename) {
     return self;
 }
 - (instancetype)init {
-    if(self = [self initWithCodeData:[[FileModel alloc] initWithFilename:[NSString stringWithFormat:@"%@", now()] content:@""]]) {
+    if(self = [self initWithCodeData:[[FileModel alloc] initWithFilename:timeString(now()) content:@""]]) {
     }
     return self;
 }

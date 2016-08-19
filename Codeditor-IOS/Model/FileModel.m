@@ -7,6 +7,7 @@
 //
 
 #import "FileModel.h"
+#import "TimeModel.h"
 
 @implementation FileModel
 
@@ -15,12 +16,6 @@ NSString* filePath(NSString* filename) {
     NSString *path=[docPath stringByAppendingPathComponent:filename];
 //    NSLog(@"path = [%@]",path);
     return path;
-}
-NSDate* now() {
-    NSTimeZone *zone = [NSTimeZone defaultTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate:[NSDate date]];
-    NSDate *nowDate=[NSDate dateWithTimeIntervalSinceNow:interval];
-    return nowDate;
 }
 
 - (instancetype)initWithFilename:(NSString*)filename
