@@ -87,7 +87,7 @@
 - (void)textViewDidChange:(UITextView *)textView {
 //    NSLog(@"textChanged");
 //    NSLog(@"editedRange (%ld, %ld)", self.editedRange.location, self.editedRange.length);
-    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.editedRange];
+    NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.selectedRange];
 //    NSLog(@"paragraph - (%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.textStorage.string substringWithRange:paragaphRange]);
 #pragma mark auto indent
     if([self paragraphWithCodeBlockEndSymbol:paragaphRange]) {
@@ -113,12 +113,12 @@
         --paragraphRange.length;
     }
 //    NSLog(@"paragraph range (%ld, %ld)", paragraphRange.location, paragraphRange.length);
+    NSRange paragraphRangeToSelection = paragraphRange;
+    paragraphRangeToSelection.length = MIN(paragraphRange.length, range.location - paragraphRange.location + 1);
+//    NSLog(@"paragraphRangeToSelection range (%ld, %ld)", paragraphRangeToSelection.location, paragraphRangeToSelection.length);
     if(range.length == 1 && [text isEqualToString:@""] && paragraphRange.length > 0
        && ![[self.textStorage.string substringWithRange:range] isEqualToString:@"\n"]) { // make delete smarter!
-        NSRange paragraphRangeToSelection = paragraphRange;
-        paragraphRangeToSelection.length = range.location - paragraphRange.location + 1;
-//        NSLog(@"paragraphRangeToSelection range (%ld, %ld)", paragraphRangeToSelection.location, paragraphRangeToSelection.length);
-        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^\\s*$" options:NSRegularExpressionAnchorsMatchLines error:nil];
+        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"^\\s+$" options:NSRegularExpressionAnchorsMatchLines error:nil];
         __block BOOL normalDelete = YES;
         [regex enumerateMatchesInString:self.textStorage.string options:0 range:paragraphRangeToSelection usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
 //            NSLog(@"delete indent (%ld, %ld) [%@] ! Just delete more!", result.range.location, result.range.length, [self.textStorage.string substringWithRange:result.range]);
@@ -131,6 +131,10 @@
             normalDelete = NO;
             *stop = YES;
         }];
+//        if(!normalDelete) {
+//            // will return NO, so have to call it manually
+//            [self textViewDidChange:self];
+//        }
         return normalDelete;
     }
     else if([text isEqualToString:@"\t"]) {
@@ -144,7 +148,7 @@
     else if([text isEqualToString:@"\n"]) {
 //        NSLog(@"typed ender");
 //        NSLog(@"paragraphRange = (%ld, %ld)", paragraphRange.location, paragraphRange.length);
-        text = [text stringByAppendingString:[self getIndentFromParagraph:paragraphRange]];
+        text = [text stringByAppendingString:[self getIndentFromParagraph:paragraphRangeToSelection]];
         [self.textStorage replaceCharactersInRange:range withString:text];
         [self setSelectedRange:NSMakeRange(range.location + text.length, 0)];
         
