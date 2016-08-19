@@ -25,9 +25,14 @@
         self.backgroundColor = backgroundColor;
         self.attributesDictionary = @{
                                       NSForegroundColorAttributeName: color,
-                                      NSFontAttributeName: bold ? [UIFont boldSystemFontOfSize:size] : [UIFont systemFontOfSize:size],
+                                      NSFontAttributeName:
+                                          (bold ? (italic
+                                                   ? [UIFont fontWithName:@"Menlo-BoldItalic" size:size]
+                                                   : [UIFont fontWithName:@"Menlo-Bold" size:size])
+                                           : (italic
+                                              ? [UIFont fontWithName:@"Menlo-Italic" size:size]
+                                              : [UIFont fontWithName:@"Menlo" size:size])),
                                       NSUnderlineStyleAttributeName: underline ? @(NSUnderlineStyleSingle) : @(NSUnderlineStyleNone),
-                                      NSObliquenessAttributeName: italic ? @0.5 : @0,
                                       NSBackgroundColorAttributeName: backgroundColor
                                       };
     }
