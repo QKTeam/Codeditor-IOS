@@ -129,7 +129,7 @@
                                             [CodeditorPattern initWithPattern:@"^\\s*#include"]
                                             ]
                                   keyword:@[
-                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z0-9_]+?)\\(" rightOffset:1]
+                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z_]+[a-zA-Z0-9_]*?)\\(" rightOffset:1]
                                             ]
                     ];
             
@@ -146,7 +146,7 @@
                                             [CodeditorPattern initWithPattern:@"^\\s*#include"]
                                             ]
                                   keyword:@[
-                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z0-9_]+?)\\(" rightOffset:1]
+                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z_]+[a-zA-Z0-9_]*?)\\(" rightOffset:1]
                                             ]
                     ];
             
@@ -162,7 +162,7 @@
                                             [CodeditorPattern initWithPattern:@"\\b(abstract|boolean|break|byte|case|catch|char|class|continue|default|do|double|else|extends|false|final|finally|float|for|if|implements|import|instanceof|int|interface|long|native|new|null|package|private|protected|public|return|short|static|super|seitch|synchronized|this|throw|throws|transient|try|true|void|volatile|while)\\b"]
                                             ]
                                   keyword:@[
-                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z0-9_]+?)\\(" rightOffset:1]
+                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z_]+[a-zA-Z0-9_]*?)\\(" rightOffset:1]
                                             ]
                     ];
             
@@ -178,7 +178,7 @@
                                             [CodeditorPattern initWithPattern:@"\\b(absolute|abstract|and|array|as|asm|assembler|at|automated|begin|case|cdecl|class|const|constructor|contains|default|destructor|dispid|dispinterface|div|do|downto|dynamic|else|end|except|export|exports|external|far|file|finalization|finally|for|forward|function|goto|if|implementation|implements|in|index|inherited|initialization|inline|interface|is|label|library|message|mod|name|near|nil|nodefault|not|object|of|on|or|out|overload|override|package|packed|pascal|private|procedure|program|property|protected|public|published|raise|read|readonly|record|register|reintroduce|repeat|requires|resident|resourcestring|safecall|set|shl|shr|stdcall|stored|string|then|threadvar|to|try|type|unit|until|uses|var|virtual|while|with|write|writeonly|xor)\\b"]
                                             ]
                                   keyword:@[
-                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z0-9_]+?)\\(" rightOffset:1]
+                                            [CodeditorPattern initWithPattern:@"\\b([a-zA-Z_]+[a-zA-Z0-9_]*?)\\(" rightOffset:1]
                                             ]
                     ];
             
