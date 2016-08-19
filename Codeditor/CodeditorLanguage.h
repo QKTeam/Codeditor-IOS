@@ -18,4 +18,7 @@ typedef enum {
     CodeditorLanguagePlain
 } CodeditorLanguageType;
 
+
++ (CodeditorLanguageType)getLanguageByFileSuffixName:(NSString*)suffix;
+
 @end

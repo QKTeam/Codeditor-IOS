@@ -46,6 +46,11 @@
     return self;
 }
 
+- (void)setLanguageType:(CodeditorLanguageType)languageType {
+    self.languagePattern = [CodeditorLanguagePattern initWithLanguage:languageType];
+    [self reloadData];
+}
+
 #pragma mark override setText // DO NOT directly call setText!
 - (void)loadText:(NSString*)text {
     text = [text stringByReplacingOccurrencesOfString:@"\t" withString:@"    "];
@@ -71,10 +76,10 @@
     [self reloadDataInRange:NSMakeRange(0, self.textStorage.string.length)];
 }
 - (void)reloadDataInRange:(NSRange)range {
-    if(self.languagePattern.language == CodeditorLanguagePlain) return;
     // NSRange selectedRange = self.selectedRange;
     // the order represents the priorities, so do not change it if you're not sure about it!
     [self setAttributes:self.colorScheme.normal andPattern:self.languagePattern.normal inRange:range];
+    if(self.languagePattern.language == CodeditorLanguagePlain) return; // just render normal text for normal
     [self setAttributes:self.colorScheme.grammar andPattern:self.languagePattern.grammar inRange:range];
     [self setAttributes:self.colorScheme.keyword andPattern:self.languagePattern.keyword inRange:range];
     [self setAttributes:self.colorScheme.symbol andPattern:self.languagePattern.symbol inRange:range];
@@ -90,7 +95,7 @@
     NSRange paragaphRange = [self.textStorage.string paragraphRangeForRange:self.selectedRange];
 //    NSLog(@"paragraph - (%ld, %ld) = %@", paragaphRange.location, paragaphRange.length, [self.textStorage.string substringWithRange:paragaphRange]);
 #pragma mark auto indent
-    if([self paragraphWithCodeBlockEndSymbol:paragaphRange]) {
+    if([self paragraphWithCodeBlockEndSymbol:paragaphRange] && self.languagePattern.language != CodeditorLanguagePlain) {
 //        NSLog(@"ended symbol!");
         if(self.lastTypedString.length == 1 && [self.lastTypedString characterAtIndex:0] == [self.languagePattern.codeBlockEndSymbol characterAtIndex:self.languagePattern.codeBlockEndSymbol.length-1]) {
             [self removeOneIndentFromParagraph:paragaphRange];
@@ -102,6 +107,7 @@
     [self reloadData];
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if(self.languagePattern.language == CodeditorLanguagePlain) return YES; // just render normal text for normal
     // get the edited range, just rerender the changed part, making it faster
 //    NSLog(@"shouldChangeTextInRange (%ld, %ld) with text [%@]", range.location, range.length, text);
     self.editedRange = NSMakeRange(range.location, text.length);

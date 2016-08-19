@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString* lastTypedString; // for judge whether should remove indent
 
 
+- (void)setLanguageType:(CodeditorLanguageType)languageType;
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type andColorScheme:(CodeditorColorSchemeType)colorScheme;
 - (instancetype)initWithLanguage:(CodeditorLanguageType)type;
 - (void)reloadData;
