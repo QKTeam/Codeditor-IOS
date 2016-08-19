@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "FileModel.h"
 
-@interface FileViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface FileViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic, strong) UICollectionView* collectionView;
 @property (nonatomic, strong) NSArray<FileModel*>* files;
 
 @end

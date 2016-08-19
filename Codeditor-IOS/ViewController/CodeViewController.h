@@ -13,6 +13,8 @@
 
 @interface CodeViewController : UIViewController <UITextFieldDelegate>
 
+NSString* getSuffix(NSString* filename);
+
 @property (nonatomic, strong) UITextField* filenameInput;
 @property (nonatomic, strong) Codeditor* codeView;
 @property (nonatomic, strong) FileModel* code;
