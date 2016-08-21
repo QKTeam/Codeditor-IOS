@@ -48,9 +48,18 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    NSLog(@"\nabsolute = %@\nrelative = %@\nparameter = %@\nquery = %@\nscheme = %@\noptions = %@\nhost = %@\npath = %@\npath components = %@\n", [url absoluteString], [url relativeString], [url parameterString], [url query], [url scheme], options, [url host], [url path], [url pathComponents]);
-    if([[url absoluteString] isEqualToString:@"codeditor://new"]) return YES;
-    return NO;
+    // codeditor://new/filename/code (filename&code base64 encoded)
+    if([[url host] isEqualToString:@"new"] && [url pathComponents].count >= 2) {
+        NSData* filenameData = [[NSData alloc] initWithBase64EncodedString:[url pathComponents][1] options:0];
+        NSString* filename = [[NSString alloc] initWithData:filenameData encoding:NSUTF8StringEncoding];
+        NSString* code = @"";
+        if([url pathComponents].count >= 3) {
+            NSData* codeData = [[NSData alloc] initWithBase64EncodedString:[url pathComponents][2] options:0];
+            code = [[NSString alloc] initWithData:codeData encoding:NSUTF8StringEncoding];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newCodeWithData" object:nil userInfo:@{@"filename":filename, @"code":code}];
+    }
+    return YES;
 }
 
 @end

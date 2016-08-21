@@ -32,6 +32,8 @@
         [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
         [self.collectionView setDelegate:self];
         [self.collectionView setDataSource:self];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newCodeFileWithData:) name:@"newCodeWithData" object:nil];
     }
     return self;
 }
@@ -47,13 +49,19 @@
 - (void)newCodeFile {
     [self.navigationController pushViewController:[[CodeViewController alloc] init] animated:YES];
 }
+- (void)newCodeFileWithData:(NSNotification*)notification {
+    CodeViewController* editor = [[CodeViewController alloc] init];
+    [editor.codeView loadText:[notification.userInfo objectForKey:@"code"]];
+    [editor.filenameInput setText:[notification.userInfo objectForKey:@"filename"]];
+    [editor.filenameInput becomeFirstResponder];
+    [self.navigationController pushViewController:editor animated:YES];
+}
 
 # pragma mark UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     FileModel* file = [FileModel fileWithFilename:self.files[indexPath.row].filename];
     CodeViewController* editor = [[CodeViewController alloc] initWithCodeData:file];
     [self.navigationController pushViewController:editor animated:YES];
-    
 }
 
 # pragma mark UICollectionViewDataSource
