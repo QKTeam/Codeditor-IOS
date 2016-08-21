@@ -13,7 +13,7 @@
 
 NSString* getSuffix(NSString* filename) {
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"\\.((?!\\.).)*?$" options:0 error:nil];
-    __block NSString* suffix;
+    __block NSString* suffix = @"";
     [regex enumerateMatchesInString:filename options:0 range:NSMakeRange(0, filename.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
         suffix = [filename substringWithRange:NSMakeRange(result.range.location + 1, result.range.length - 1)];
         *stop = YES;
@@ -59,7 +59,9 @@ NSString* getSuffix(NSString* filename) {
     return self;
 }
 - (instancetype)init {
-    if(self = [self initWithCodeData:[[FileModel alloc] initWithFilename:timeString(now()) content:@""]]) {
+    if(self = [self initWithCodeData:[[FileModel alloc] initWithFilename:@"noname" content:@""]]) {
+        [self renewFilename];
+        [self.code saveFile];
     }
     return self;
 }
@@ -72,30 +74,35 @@ NSString* getSuffix(NSString* filename) {
 }
 
 - (void)renewFilename {
-    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"\\(([0-9]+)\\)\\.((?!\\.).)*?$" options:0 error:nil];
-    __block BOOL hasNumberSuffix = NO;
-    [regex enumerateMatchesInString:self.filenameInput.text options:0 range:NSMakeRange(0, self.filenameInput.text.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-        hasNumberSuffix = YES;
-        NSRange numberRange = [result rangeAtIndex:1];
-        NSInteger number = [[self.filenameInput.text substringWithRange:numberRange] integerValue];
-        NSString* nextNumberString = [NSString stringWithFormat:@"%ld", number + 1];
-        [self.filenameInput setText:[self.filenameInput.text stringByReplacingCharactersInRange:numberRange withString:nextNumberString]];
-    }];
-    if(!hasNumberSuffix) {
-        regex = [NSRegularExpression regularExpressionWithPattern:@"\\.((?!\\.).)*?$" options:NSRegularExpressionAnchorsMatchLines error:nil];
-        [self.filenameInput setText:[regex stringByReplacingMatchesInString:self.filenameInput.text options:0 range:NSMakeRange(0, self.filenameInput.text.length) withTemplate:@" (1)$0"]];
+    while(![self.code renewFilename:self.filenameInput.text]) {
+        NSString* suffix = getSuffix(self.filenameInput.text);
+        if(![suffix isEqualToString:@""]) {
+            suffix = [@"." stringByAppendingString:suffix];
+        }
+        __block NSString* prefix = [self.filenameInput.text substringWithRange:NSMakeRange(0, self.filenameInput.text.length - suffix.length)];
+        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"\\(([0-9]+)\\)$" options:0 error:nil];
+        __block BOOL hasNumberSuffix = NO;
+        [regex enumerateMatchesInString:prefix options:0 range:NSMakeRange(0, prefix.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+            hasNumberSuffix = YES;
+            NSRange numberRange = [result rangeAtIndex:1];
+            NSInteger number = [[prefix substringWithRange:numberRange] integerValue];
+            NSString* nextNumberString = [NSString stringWithFormat:@"%ld", number + 1];
+            prefix = [prefix stringByReplacingCharactersInRange:numberRange withString:nextNumberString];
+        }];
+        if(!hasNumberSuffix) {
+            prefix = [prefix stringByAppendingString:@" (1)"];
+        }
+        [self.filenameInput setText:[prefix stringByAppendingString:suffix]];
     }
 }
 - (void)renewCode {
-    while(![self.code renewFilename:self.filenameInput.text]) {
-        [self renewFilename];
-    }
     [self.code renewContent:self.codeView.text];
     [self.code saveFile];
     CodeEditorLanguageType languageType = [CodeEditorLanguage getLanguageByFileSuffixName:getSuffix(self.code.filename)];
     [self.codeView setLanguageType:languageType];
 }
 - (void)copyCode {
+    [self renewCode];
     [self renewFilename];
     [self renewCode];
 }
@@ -111,6 +118,7 @@ NSString* getSuffix(NSString* filename) {
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self.code deleteFile];
+    [self renewFilename];
     [self renewCode];
     
 }
