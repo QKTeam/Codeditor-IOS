@@ -47,4 +47,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    NSLog(@"\nabsolute = %@\nrelative = %@\nparameter = %@\nquery = %@\nscheme = %@\noptions = %@\nhost = %@\npath = %@\npath components = %@\n", [url absoluteString], [url relativeString], [url parameterString], [url query], [url scheme], options, [url host], [url path], [url pathComponents]);
+    if([[url absoluteString] isEqualToString:@"codeditor://new"]) return YES;
+    return NO;
+}
+
 @end

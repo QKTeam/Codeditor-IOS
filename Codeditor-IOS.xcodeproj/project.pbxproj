@@ -10,13 +10,6 @@
 		5FCAB3531D62BF850039F8E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3521D62BF850039F8E1 /* main.m */; };
 		5FCAB3561D62BF850039F8E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3551D62BF850039F8E1 /* AppDelegate.m */; };
 		5FCAB35E1D62BF850039F8E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FCAB35D1D62BF850039F8E1 /* Assets.xcassets */; };
-		5FCAB3701D62D51C0039F8E1 /* Codeditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB36F1D62D51C0039F8E1 /* Codeditor.m */; };
-		5FCAB3731D62D6A20039F8E1 /* CodeditorColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3721D62D6A20039F8E1 /* CodeditorColorScheme.m */; };
-		5FCAB3791D62D9DC0039F8E1 /* CodeditorColorAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3781D62D9DC0039F8E1 /* CodeditorColorAttribute.m */; };
-		5FCAB37F1D62E3A90039F8E1 /* CodeditorLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB37E1D62E3A90039F8E1 /* CodeditorLanguage.m */; };
-		5FCAB3821D62E3C20039F8E1 /* CodeditorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */; };
-		5FCAB3851D62EB750039F8E1 /* CodeditorLanguagePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */; };
-		5FCAB38B1D640C130039F8E1 /* CodeditorLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCAB38A1D640C130039F8E1 /* CodeditorLayoutManager.m */; };
 		5FEBC26D1D66EC5E00B957C2 /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC26C1D66EC5E00B957C2 /* FileViewController.m */; };
 		5FEBC2701D66EC6600B957C2 /* CodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC26F1D66EC6600B957C2 /* CodeViewController.m */; };
 		5FEBC2731D66F07600B957C2 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC2721D66F07600B957C2 /* FileModel.m */; };
@@ -33,20 +26,6 @@
 		5FCAB3551D62BF850039F8E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5FCAB35D1D62BF850039F8E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FCAB3621D62BF850039F8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FCAB36E1D62D51C0039F8E1 /* Codeditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Codeditor.h; sourceTree = "<group>"; };
-		5FCAB36F1D62D51C0039F8E1 /* Codeditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Codeditor.m; sourceTree = "<group>"; };
-		5FCAB3711D62D6A20039F8E1 /* CodeditorColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorColorScheme.h; sourceTree = "<group>"; };
-		5FCAB3721D62D6A20039F8E1 /* CodeditorColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorColorScheme.m; sourceTree = "<group>"; };
-		5FCAB3771D62D9DC0039F8E1 /* CodeditorColorAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorColorAttribute.h; sourceTree = "<group>"; };
-		5FCAB3781D62D9DC0039F8E1 /* CodeditorColorAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorColorAttribute.m; sourceTree = "<group>"; };
-		5FCAB37D1D62E3A90039F8E1 /* CodeditorLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorLanguage.h; sourceTree = "<group>"; };
-		5FCAB37E1D62E3A90039F8E1 /* CodeditorLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorLanguage.m; sourceTree = "<group>"; };
-		5FCAB3801D62E3C20039F8E1 /* CodeditorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorPattern.h; sourceTree = "<group>"; };
-		5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorPattern.m; sourceTree = "<group>"; };
-		5FCAB3831D62EB750039F8E1 /* CodeditorLanguagePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorLanguagePattern.h; sourceTree = "<group>"; };
-		5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorLanguagePattern.m; sourceTree = "<group>"; };
-		5FCAB3891D640C130039F8E1 /* CodeditorLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeditorLayoutManager.h; sourceTree = "<group>"; };
-		5FCAB38A1D640C130039F8E1 /* CodeditorLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeditorLayoutManager.m; sourceTree = "<group>"; };
 		5FEBC26B1D66EC5E00B957C2 /* FileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewController.h; sourceTree = "<group>"; };
 		5FEBC26C1D66EC5E00B957C2 /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewController.m; sourceTree = "<group>"; };
 		5FEBC26E1D66EC6600B957C2 /* CodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeViewController.h; sourceTree = "<group>"; };
@@ -84,7 +63,6 @@
 		5FCAB3451D62BF850039F8E1 = {
 			isa = PBXGroup;
 			children = (
-				5FCAB36D1D62D0230039F8E1 /* Codeditor */,
 				5FCAB3501D62BF850039F8E1 /* Codeditor-IOS */,
 				5FCAB34F1D62BF850039F8E1 /* Products */,
 				37AAD0489B6EE4326876FC39 /* Pods */,
@@ -122,27 +100,6 @@
 				5FCAB3521D62BF850039F8E1 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		5FCAB36D1D62D0230039F8E1 /* Codeditor */ = {
-			isa = PBXGroup;
-			children = (
-				5FCAB36E1D62D51C0039F8E1 /* Codeditor.h */,
-				5FCAB36F1D62D51C0039F8E1 /* Codeditor.m */,
-				5FCAB3711D62D6A20039F8E1 /* CodeditorColorScheme.h */,
-				5FCAB3721D62D6A20039F8E1 /* CodeditorColorScheme.m */,
-				5FCAB3771D62D9DC0039F8E1 /* CodeditorColorAttribute.h */,
-				5FCAB3781D62D9DC0039F8E1 /* CodeditorColorAttribute.m */,
-				5FCAB37D1D62E3A90039F8E1 /* CodeditorLanguage.h */,
-				5FCAB37E1D62E3A90039F8E1 /* CodeditorLanguage.m */,
-				5FCAB3801D62E3C20039F8E1 /* CodeditorPattern.h */,
-				5FCAB3811D62E3C20039F8E1 /* CodeditorPattern.m */,
-				5FCAB3831D62EB750039F8E1 /* CodeditorLanguagePattern.h */,
-				5FCAB3841D62EB750039F8E1 /* CodeditorLanguagePattern.m */,
-				5FCAB3891D640C130039F8E1 /* CodeditorLayoutManager.h */,
-				5FCAB38A1D640C130039F8E1 /* CodeditorLayoutManager.m */,
-			);
-			path = Codeditor;
 			sourceTree = "<group>";
 		};
 		5FEBC2661D66EC4A00B957C2 /* Model */ = {
@@ -352,18 +309,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FCAB3561D62BF850039F8E1 /* AppDelegate.m in Sources */,
-				5FCAB3791D62D9DC0039F8E1 /* CodeditorColorAttribute.m in Sources */,
-				5FCAB38B1D640C130039F8E1 /* CodeditorLayoutManager.m in Sources */,
-				5FCAB3851D62EB750039F8E1 /* CodeditorLanguagePattern.m in Sources */,
 				5FEBC26D1D66EC5E00B957C2 /* FileViewController.m in Sources */,
 				5FEBC2701D66EC6600B957C2 /* CodeViewController.m in Sources */,
 				5FCAB3531D62BF850039F8E1 /* main.m in Sources */,
-				5FCAB3701D62D51C0039F8E1 /* Codeditor.m in Sources */,
 				5FEBC2731D66F07600B957C2 /* FileModel.m in Sources */,
-				5FCAB3821D62E3C20039F8E1 /* CodeditorPattern.m in Sources */,
-				5FCAB3731D62D6A20039F8E1 /* CodeditorColorScheme.m in Sources */,
 				5FEBC2761D673EC000B957C2 /* TimeModel.m in Sources */,
-				5FCAB37F1D62E3A90039F8E1 /* CodeditorLanguage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

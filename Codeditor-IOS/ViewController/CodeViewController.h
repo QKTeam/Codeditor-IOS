@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Codeditor.h"
+#import "CodeEditorView.h"
 #import "Masonry.h"
 #import "FileModel.h"
 
@@ -16,7 +16,7 @@
 NSString* getSuffix(NSString* filename);
 
 @property (nonatomic, strong) UITextField* filenameInput;
-@property (nonatomic, strong) Codeditor* codeView;
+@property (nonatomic, strong) CodeEditorView* codeView;
 @property (nonatomic, strong) FileModel* code;
 @property (nonatomic) BOOL deleted;
 

@@ -45,8 +45,8 @@ NSString* getSuffix(NSString* filename) {
         [self.filenameInput setText:self.code.filename];
         [self.filenameInput setDelegate:self];
         
-        CodeditorLanguageType languageType = [CodeditorLanguage getLanguageByFileSuffixName:getSuffix(self.code.filename)];
-        self.codeView = [[Codeditor alloc] initWithLanguage:languageType];
+        CodeEditorLanguageType languageType = [CodeEditorLanguage getLanguageByFileSuffixName:getSuffix(self.code.filename)];
+        self.codeView = [[CodeEditorView alloc] initWithLanguage:languageType];
         [self.view addSubview:self.codeView];
         [self.codeView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view.mas_top);
@@ -92,7 +92,7 @@ NSString* getSuffix(NSString* filename) {
     }
     [self.code renewContent:self.codeView.text];
     [self.code saveFile];
-    CodeditorLanguageType languageType = [CodeditorLanguage getLanguageByFileSuffixName:getSuffix(self.code.filename)];
+    CodeEditorLanguageType languageType = [CodeEditorLanguage getLanguageByFileSuffixName:getSuffix(self.code.filename)];
     [self.codeView setLanguageType:languageType];
 }
 - (void)copyCode {

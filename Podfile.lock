@@ -1,12 +1,15 @@
 PODS:
+  - CodeEditorView (0.3.3)
   - Masonry (1.0.1)
 
 DEPENDENCIES:
+  - CodeEditorView
   - Masonry
 
 SPEC CHECKSUMS:
+  CodeEditorView: 65ab7169eb8967a5ddc3237880338b66f1f4e326
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
 
-PODFILE CHECKSUM: 935629d3c37e7aa0d7f0b1fb6066ec67dc216085
+PODFILE CHECKSUM: b3cab1a5dba5887655a5863367e999da7b91aca2
 
 COCOAPODS: 1.0.1
