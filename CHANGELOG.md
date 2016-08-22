@@ -1,5 +1,8 @@
 ### 更新日志
 
+#### 0.4.1 build 5
+1. 更新CodeEditorView版本，渲染更快
+
 #### 0.4.0 build 4
 1. 提供外部调用url scheme
 ```
