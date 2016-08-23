@@ -55,6 +55,9 @@ NSString* getSuffix(NSString* filename) {
             make.left.equalTo(self.view.mas_left);
         }];
         [self.codeView loadText:self.code.content];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowOrHide:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowOrHide:) name:UIKeyboardDidHideNotification object:nil];
     }
     return self;
 }
@@ -64,6 +67,14 @@ NSString* getSuffix(NSString* filename) {
         [self.code saveFile];
     }
     return self;
+}
+
+- (void)keyboardShowOrHide:(NSNotification*)notification {
+    CGRect keyboardFrame = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    [self.codeView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.mas_bottom).offset(keyboardFrame.origin.y - self.view.frame.size.height);
+    }];
+    [self.codeView setNeedsUpdateConstraints];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
