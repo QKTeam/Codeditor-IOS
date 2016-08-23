@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FileViewController.h"
+#import "FileModel.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSString* opened = [[NSUserDefaults standardUserDefaults] objectForKey:@"opened"];
+    if(!opened || ![opened isEqualToString:@"yes"]) {
+        FileModel* file = [[FileModel alloc] initWithFilename:@"example.cpp" content:@"/*\n Highlight and auto indent will be recognized with the suffix of your filename.\n The following is an example code\n*/\n#include <cstdio>\nint main() {\n\tprintf(\"hello world!\");\n\treturn 0;\n}"];
+        [file saveFile];
+        [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"opened"];
+    }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor whiteColor]];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[FileViewController alloc] init]];

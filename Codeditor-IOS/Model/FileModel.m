@@ -33,8 +33,8 @@ NSString* filePath(NSString* filename) {
 - (instancetype)initWithFilename:(NSString*)filename
                          content:(NSString*)content {
     if(self = [self initWithFilename:filename
-                      createdTime:now()
-                      updatedTime:now()
+                         createdTime:now()
+                         updatedTime:now()
                              content:content]) {
     }
     return self;
