@@ -1,5 +1,8 @@
 ### 更新日志
 
+#### 0.4.2 build 6
+1. 第一次启动时自动生成`first example.cpp`
+
 #### 0.4.1 build 5
 1. 更新CodeEditorView版本，渲染更快
 
