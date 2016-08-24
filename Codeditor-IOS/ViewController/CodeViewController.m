@@ -97,7 +97,7 @@ NSString* getSuffix(NSString* filename) {
             hasNumberSuffix = YES;
             NSRange numberRange = [result rangeAtIndex:1];
             NSInteger number = [[prefix substringWithRange:numberRange] integerValue];
-            NSString* nextNumberString = [NSString stringWithFormat:@"%ld", number + 1];
+            NSString* nextNumberString = [NSString stringWithFormat:@"%ld", (long)number + 1];
             prefix = [prefix stringByReplacingCharactersInRange:numberRange withString:nextNumberString];
         }];
         if(!hasNumberSuffix) {
