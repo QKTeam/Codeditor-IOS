@@ -8,5 +8,5 @@ before_install:
     - pod repo update --silent
 
 script:
-    - pos intall
-    - xctool -workspace Codeditor-IOS.xcworkspace -scheme 'Codeditor-IOS' -sdk iphonesimulator build
+    - pod install
+    - xctool -workspace Codeditor-IOS.xcworkspace -scheme 'Codeditor-IOS' -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
