@@ -24,4 +24,4 @@ You can use it to easily edit code with highlight and auto indent. Compiling wil
 - [ ] Markdown
 
 ## Feedback
-http://www.qkteam.com/feedback?codeditor
+http://www.qkteam.com/feedback?project=codeditor-ios
