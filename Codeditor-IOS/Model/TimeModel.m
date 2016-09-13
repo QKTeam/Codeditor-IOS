@@ -11,15 +11,16 @@
 @implementation TimeModel
 
 NSDate* now() {
-    NSTimeZone *zone = [NSTimeZone defaultTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate:[NSDate date]];
-    NSDate *nowDate=[NSDate dateWithTimeIntervalSinceNow:interval];
-    return nowDate;
+    NSTimeInterval nowTimestamp = [[NSDate date] timeIntervalSince1970];
+    NSString* timeStamp10 = [NSString stringWithFormat:@"%ld", (long)nowTimestamp];
+    NSDate* stamp = [NSDate dateWithTimeIntervalSince1970:[timeStamp10 intValue]];
+    return stamp;
 }
 
 NSString* timeString(NSDate* date) {
-    NSString* dateString = [NSString stringWithFormat:@"%@", date];
-    return [dateString substringToIndex:dateString.length - 6];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [dateFormatter stringFromDate:date];
 }
 
 @end

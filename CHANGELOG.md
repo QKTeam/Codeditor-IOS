@@ -1,5 +1,8 @@
 ### CHANGELOG
 
+#### 1.1.0 build 9
+1. Fix time error with timeZone
+
 #### 0.4.3 build 7
 1. Adjust position of input box when keyboard did show
 
