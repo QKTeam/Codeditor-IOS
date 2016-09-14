@@ -2,6 +2,8 @@
 
 #### 1.1.0 build 9
 1. Fix time error with timeZone
+2. Quick symbol insert
+3. File manager in iTunes
 
 #### 0.4.3 build 7
 1. Adjust position of input box when keyboard did show
