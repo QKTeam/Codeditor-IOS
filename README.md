@@ -13,9 +13,9 @@ You can use it to easily edit code with highlight and auto indent. Compiling wil
 ## Url Scheme
 If you want to open `Codeditor` in your app and create a code file at the same time, use the following url scheme:
 ```
-codeditor://new/language/code
+codeditor://new/filename/code
 ```
-`language` and `code` both need `base64(with url safe)` encode, an example below
+`filename` and `code` both need `base64(with url safe)` encode, an example below
 ```
 NSString* base64Encode(NSString* str) {
     NSData* base64Data = [str dataUsingEncoding:NSUTF8StringEncoding];
