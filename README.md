@@ -10,6 +10,29 @@ Code Editor for iOS
 
 You can use it to easily edit code with highlight and auto indent. Compiling will also be supported in the future!
 
+## Url Scheme
+If you want to open `Codeditor` in your app and create a code file at the same time, use the following url scheme:
+```
+codeditor://new/language/code
+```
+`language` and `code` both need `base64(with url safe)` encode, an example below
+```
+NSString* base64Encode(NSString* str) {
+    NSData* base64Data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    return [base64Data base64EncodedStringWithOptions:0];
+}
+NSString* base64EncodeUrlsafe(NSString* str) {
+    NSString* strBase64 = base64Encode(str);
+    return [strBase64 stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+}
+
+
+NSURL* url = [NSURL URLWithString:STRF(@"codeditor://new/%@/%@", base64EncodeUrlsafe(filename), base64EncodeUrlsafe(content))];
+if([[UIApplication sharedApplication] canOpenURL:url]) {
+    [[UIApplication sharedApplication] openURL:url];
+}
+```
+
 ## Features
 - [x] Grammar highlight
 - [x] Auto indent

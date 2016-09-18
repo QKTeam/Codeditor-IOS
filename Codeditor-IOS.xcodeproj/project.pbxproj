@@ -15,6 +15,7 @@
 		5FEBC2731D66F07600B957C2 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC2721D66F07600B957C2 /* FileModel.m */; };
 		5FEBC2761D673EC000B957C2 /* TimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FEBC2751D673EC000B957C2 /* TimeModel.m */; };
 		5FEBC27C1D67699300B957C2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FEBC27B1D67699300B957C2 /* Launch Screen.storyboard */; };
+		C01316E91D8E6F80006CC0F2 /* Security.m in Sources */ = {isa = PBXBuildFile; fileRef = C01316E81D8E6F80006CC0F2 /* Security.m */; };
 		F4B1ED89C97CA41C59E30774 /* libPods-Codeditor-IOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,8 @@
 		5FEBC27B1D67699300B957C2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Codeditor-IOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6DD85393F53E1318A92413 /* Pods-Codeditor-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codeditor-IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Codeditor-IOS/Pods-Codeditor-IOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C01316E71D8E6F80006CC0F2 /* Security.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Security.h; sourceTree = "<group>"; };
+		C01316E81D8E6F80006CC0F2 /* Security.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Security.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 				5FCAB35D1D62BF850039F8E1 /* Assets.xcassets */,
 				5FCAB3621D62BF850039F8E1 /* Info.plist */,
 				5FCAB3511D62BF850039F8E1 /* Supporting Files */,
+				C01316DE1D8E6D71006CC0F2 /* Function */,
 				5FEBC2771D67400300B957C2 /* View */,
 				5FEBC2661D66EC4A00B957C2 /* Model */,
 				5FEBC2671D66EC4A00B957C2 /* ViewController */,
@@ -137,6 +141,15 @@
 				855FF6C41CA9797534436CF9 /* libPods-Codeditor-IOS.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C01316DE1D8E6D71006CC0F2 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C01316E71D8E6F80006CC0F2 /* Security.h */,
+				C01316E81D8E6F80006CC0F2 /* Security.m */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FCAB3561D62BF850039F8E1 /* AppDelegate.m in Sources */,
+				C01316E91D8E6F80006CC0F2 /* Security.m in Sources */,
 				5FEBC26D1D66EC5E00B957C2 /* FileViewController.m in Sources */,
 				5FEBC2701D66EC6600B957C2 /* CodeViewController.m in Sources */,
 				5FCAB3531D62BF850039F8E1 /* main.m in Sources */,

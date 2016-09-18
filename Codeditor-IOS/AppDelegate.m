@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FileViewController.h"
 #import "FileModel.h"
+#import "Security.h"
 
 @interface AppDelegate ()
 
@@ -55,14 +56,12 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    // codeditor://new/filename/code (filename&code base64 encoded)
+    // codeditor://new/filename/code (filename&code base64 encoded with urlsafe: '/' -> '_')
     if([[url host] isEqualToString:@"new"] && [url pathComponents].count >= 2) {
-        NSData* filenameData = [[NSData alloc] initWithBase64EncodedString:[url pathComponents][1] options:0];
-        NSString* filename = [[NSString alloc] initWithData:filenameData encoding:NSUTF8StringEncoding];
+        NSString* filename = base64DecodeUrlsafe([url pathComponents][1]);
         NSString* code = @"";
         if([url pathComponents].count >= 3) {
-            NSData* codeData = [[NSData alloc] initWithBase64EncodedString:[url pathComponents][2] options:0];
-            code = [[NSString alloc] initWithData:codeData encoding:NSUTF8StringEncoding];
+            code = base64DecodeUrlsafe([url pathComponents][2]);
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"newCodeWithData" object:nil userInfo:@{@"filename":filename, @"code":code}];
     }
