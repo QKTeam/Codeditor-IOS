@@ -27,7 +27,7 @@ NSString* getSuffix(NSString* filename) {
         self.deleted = NO;
         
         self.navigationItem.rightBarButtonItems = @[
-                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCode)],
+                                                    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCodeConfirm:)],
                                                     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(copyCode)]
                                                     ];
         self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 44)];
@@ -116,6 +116,18 @@ NSString* getSuffix(NSString* filename) {
     [self renewCode];
     [self renewFilename];
     [self renewCode];
+}
+- (void)deleteCodeConfirm:(UIBarButtonItem*)sender {
+    UIAlertController* alertController = [[UIAlertController alloc] init];
+    UIAlertAction* confirmAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self deleteCode];
+    }];
+    [alertController addAction:confirmAction];
+    UIPopoverPresentationController* popoverController = alertController.popoverPresentationController;
+    if(popoverController) {
+        [popoverController setBarButtonItem:sender];
+    }
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 - (void)deleteCode {
     [self.code deleteFile];
