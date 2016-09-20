@@ -3,6 +3,8 @@ language: objective-c
 osx_image: xcode8
 
 before_install:
+    - brew update
+    - brew outdated xctool || brew upgrade xctool
     - pod --version
     - pod setup --silent > /dev/null
     - pod repo update --silent
