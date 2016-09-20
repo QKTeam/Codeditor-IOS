@@ -38,6 +38,7 @@
     return self;
 }
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self reloadFileList];
 }
 
@@ -79,14 +80,14 @@
     [cell.layer setBorderColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5].CGColor];
     [cell.layer setBorderWidth:1];
     
-    UILabel* updatedTime = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 130, 30)];
+    UILabel* updatedTime = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 130, 30)];
     [updatedTime setText:timeString(self.files[indexPath.row].updatedTime)];
     [updatedTime setTextColor:[UIColor grayColor]];
     [updatedTime setFont:[UIFont systemFontOfSize:10]];
     [updatedTime setTextAlignment:NSTextAlignmentCenter];
     [cell.contentView addSubview:updatedTime];
     
-    UILabel* suffix = [[UILabel alloc] initWithFrame:CGRectMake(15, 30, 130, 70)];
+    UILabel* suffix = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 130, 70)];
     NSString* type = getSuffix(self.files[indexPath.row].filename);
     if(!type || [type isEqualToString:@""]) type = @"plain";
     type = [type uppercaseString];
@@ -96,11 +97,11 @@
     [suffix setFont:[UIFont fontWithName:@"Menlo" size:20]];
     [cell.contentView addSubview:suffix];
     
-    UIView* splitLine = [[UIView alloc] initWithFrame:CGRectMake(15, 100, 130, 1)];
+    UIView* splitLine = [[UIView alloc] initWithFrame:CGRectMake(10, 100, 130, 1)];
     [splitLine setBackgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5]];
     [cell.contentView addSubview:splitLine];
     
-    UILabel* filename = [[UILabel alloc] initWithFrame:CGRectMake(15, 100, 130, 60)];
+    UILabel* filename = [[UILabel alloc] initWithFrame:CGRectMake(10, 100, 130, 60)];
     [filename setText:self.files[indexPath.row].filename];
     [filename setTextAlignment:NSTextAlignmentCenter];
     [filename setFont:[UIFont fontWithName:@"Menlo" size:[UIFont systemFontSize]]];
@@ -112,7 +113,7 @@
 
 # pragma mark UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(160, 160);
+    return CGSizeMake(150, 150);
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(20, 30, 0, 30);
