@@ -32,6 +32,7 @@
         [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
         [self.collectionView setDelegate:self];
         [self.collectionView setDataSource:self];
+        [self.collectionView setAlwaysBounceVertical:YES]; // can always drag even if no full content
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newCodeFileWithData:) name:@"newCodeWithData" object:nil];
     }
@@ -116,7 +117,7 @@
     return CGSizeMake(150, 150);
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(20, 30, 0, 30);
+    return UIEdgeInsetsMake(20, 30, 20, 30);
 }
 
 @end
